@@ -1,11 +1,11 @@
 import { AboutChannelData } from "@/types";
 
 export const aboutChannelData: AboutChannelData = {
-  title: "About Rus TV",
+  title: "About Arus TV",
   description:
-    "Rus TV is a new 24/7 channel bringing entertainment, news, and cultural programming to Russian-speaking audiences worldwide. Launched by ESPACE TV, the channel blends timeless classics with fresh, original content.",
+    "Arus TV is a new 24/7 channel bringing entertainment, news, and cultural programming to Malaysian audiences. Launched by ESPACE TV, the channel blends timeless classics with fresh, original content.",
   genre: "Entertainment & News",
-  language: "Russian",
+  language: "Malay",
   launchDate: "2026-08-01",
   highlights: [
     "24/7 live broadcast",
