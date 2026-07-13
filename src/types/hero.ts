@@ -1,6 +1,11 @@
+export interface FeaturedProgram {
+  id: string;
+  title: string;
+  posterUrl: string;
+}
+
 export interface HeroData {
-  channelName: string;
-  tagline: string;
   logoUrl: string;
   backgroundImages: string[];
+  featuredPrograms: FeaturedProgram[];
 }

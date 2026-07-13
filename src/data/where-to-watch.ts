@@ -1,29 +1,35 @@
+// src/data/where-to-watch.ts
 import { WhereToWatchData } from "@/types";
 
 export const whereToWatchData: WhereToWatchData = {
   satellite: [
     {
-      provider: "Placeholder Satellite Co.",
-      frequency: "11.595 GHz",
-      transponder: "Transponder 12",
+      provider: "MYTV",
+      frequency: "474 MHz",
+      transponder: "Digital Terrestrial",
     },
   ],
   ottLinks: [
     {
-      platform: "iOS App",
-      url: "https://apps.apple.com/placeholder",
-      iconUrl: "/images/where-to-watch/apple-placeholder.svg",
+      platform: "Google Play",
+      url: "https://play.google.com/store/apps/details?id=com.arus.tv",
+      iconUrl: "/images/where-to-watch/google.png",
     },
     {
-      platform: "Android App",
-      url: "https://play.google.com/placeholder",
-      iconUrl: "/images/where-to-watch/android-placeholder.svg",
+      platform: "App Store",
+      url: "https://apps.apple.com/app/arus-tv/id123456789",
+      iconUrl: "/images/where-to-watch/apple.png",
+    },
+    {
+      platform: "AppGallery",
+      url: "https://appgallery.huawei.com/app/C123456789",
+      iconUrl: "/images/where-to-watch/appGallery.png",
     },
     {
       platform: "Web Player",
-      url: "https://watch.rustv-placeholder.com",
-      iconUrl: "/images/where-to-watch/web-placeholder.svg",
+      url: "https://watch.arus.tv",
+      iconUrl: "/images/where-to-watch/web.png",
     },
   ],
-  availableRegions: ["Europe", "North America", "Middle East"],
+  availableRegions: ["Malaysia"],
 };

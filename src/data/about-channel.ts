@@ -1,12 +1,12 @@
 import { AboutChannelData } from "@/types";
 
 export const aboutChannelData: AboutChannelData = {
-  title: "About Arus TV",
+  title: "About SIARA TV",
   description:
-    "Arus TV is a new 24/7 channel bringing entertainment, news, and cultural programming to Malaysian audiences. Launched by ESPACE TV, the channel blends timeless classics with fresh, original content.",
+    "SIARA TV is a new 24/7 channel bringing entertainment, news, and cultural programming to Malaysian audiences. Launched by MYTV, the channel blends timeless classics with fresh, original content.",
   genre: "Entertainment & News",
-  language: "Malay",
-  launchDate: "2026-08-01",
+  language: "Malay/English",
+  launchDate: "2026-07-20",
   highlights: [
     "24/7 live broadcast",
     "Original and licensed programming",
