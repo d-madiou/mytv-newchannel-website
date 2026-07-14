@@ -62,13 +62,16 @@ export default function WhereToWatch() {
                 rel="noopener noreferrer"
                 className="transition-all duration-300 hover:scale-102 hover:opacity-80 focus-visible:outline-2 focus-visible:outline-brand-orange"
               >
-                <Image
-                  src={link.iconUrl}
-                  alt={link.platform}
-                  width={160}
-                  height={50}
-                  className="h-auto w-32 object-contain sm:w-40"
-                />
+                <div className="w-32 sm:w-40">
+                  <Image
+                    src={link.iconUrl}
+                    alt={link.platform}
+                    width={160}
+                    height={50}
+                    className="h-auto w-full object-contain"
+                    style={{ width: "100%", height: "auto" }}
+                  />
+                </div>
               </a>
             ))}
           </div>
@@ -85,13 +88,16 @@ export default function WhereToWatch() {
           
           <div className="max-w-xs border border-black/10 bg-white p-6 transition-all duration-300 hover:border-black/20">
             <div className="flex items-center gap-6">
-              <Image
-                src="/images/where-to-watch/mytv.png"
-                alt="MYTV Broadcast Network"
-                width={100}
-                height={50}
-                className="h-10 w-auto object-contain"
-              />
+              <div className="h-10 w-24">
+                <Image
+                  src="/images/where-to-watch/mytv.png"
+                  alt="MYTV Broadcast Network"
+                  width={100}
+                  height={50}
+                  className="h-full w-full object-contain"
+                  style={{ width: "100%", height: "100%" }}
+                />
+              </div>
               <div className="h-10 w-px bg-black/10" />
               <div className="flex flex-col">
                 <span className="text-[9px] font-bold text-black/40 uppercase tracking-wider">Channel</span>
@@ -119,13 +125,16 @@ export default function WhereToWatch() {
                 className="inline-flex items-center gap-2 rounded-full border border-brand-orange/20 bg-brand-orange/5 px-4 py-1.5 text-xs font-bold text-brand-orange tracking-wide uppercase"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-brand-orange animate-pulse" />
-                <Image
-                  src="/images/shared/malaysia-flag.png"
-                  alt="Malaysia Flag"
-                  width={18}
-                  height={12}
-                  className="h-3.5 w-auto shrink-0 border border-black/5 shadow-2xs"
-                />
+                <div className="h-3.5 w-3.5 shrink-0 border border-black/5 shadow-2xs">
+                  <Image
+                    src="/images/shared/malaysia-flag.png"
+                    alt="Malaysia Flag"
+                    width={18}
+                    height={12}
+                    className="h-full w-full object-contain"
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                </div>
                 <span>{region}</span>
               </span>
             ))}

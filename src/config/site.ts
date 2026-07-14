@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Siara TV",
   description:
-    "Siara TV is a 24/7 channel bringing entertainment, news, and culture to Malaysian audiences. Discover where to watch, our latest news, and advertising opportunities.",
+    "Siara TV is a 24/7 public service announcement channel delivering health, safety, and civic information to Malaysian audiences. Discover where to watch, our latest news, and advertising opportunities.",
   url: "https://www.siaratv-placeholder.com",
   ogImage: "/images/shared/og-image-placeholder.jpg",
   navLinks: [

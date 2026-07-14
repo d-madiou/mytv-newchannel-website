@@ -1,7 +1,8 @@
 "use client";
 
 import { contactData } from "@/data/contact";
-import { Music2, Mail, Phone, MapPin } from "lucide-react";
+import { Music2, Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 // Inline SVGs for social brands
 const FacebookIcon = ({ className }: { className?: string }) => (
@@ -35,86 +36,130 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 export default function Contact() {
   if (!contactData) return null;
 
+  const channels = [
+    contactData.email && {
+      key: "email",
+      label: "Electronic Mail",
+      value: contactData.email,
+      freq: "88.1",
+      icon: Mail,
+      href: `mailto:${contactData.email}`,
+    },
+    contactData.phone && {
+      key: "phone",
+      label: "Voice Line",
+      value: contactData.phone,
+      freq: "94.5",
+      icon: Phone,
+      href: `tel:${contactData.phone.replace(/[^+\d]/g, "")}`,
+    },
+    contactData.address && {
+      key: "address",
+      label: "Studio Address",
+      value: contactData.address,
+      freq: "101.2",
+      icon: MapPin,
+      href: undefined,
+    },
+  ].filter(Boolean) as {
+    key: string;
+    label: string;
+    value: string;
+    freq: string;
+    icon: typeof Mail;
+    href?: string;
+  }[];
+
   return (
-    <section className="relative w-full overflow-hidden bg-white py-16 md:py-24 text-black">
-      <div className="mx-auto max-w-6xl px-4 md:px-8">
-        {/* Asymmetric Layout Grid */}
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-start">
-          {/* Left Block: Editorial Typography */}
-          <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-32">
-            <div className="flex items-center gap-2.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-brand-orange animate-pulse" />
-              <span className="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400">
-                Global Desk
+    <section id="contact" className="scroll-mt-24 bg-white text-black">
+      {/* ── Top banner with background image ── */}
+      <div className="relative flex h-[35vh] min-h-[280px] w-full flex-col justify-end overflow-hidden pt-[88px]">
+        <Image
+          src="/images/where-to-watch/imageWatch.png"
+          alt="Contact Arus TV"
+          fill
+          className="object-cover"
+          sizes="100vw"
+          priority
+        />
+        {/* Gradient overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/60 to-transparent" />
+
+        {/* Headline inside the banner */}
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-8 md:px-8 md:pb-10">
+          <div className="flex items-end justify-between border-b border-white/20 pb-4">
+            <div>
+              <span className="mb-2 block text-[10px] font-bold uppercase tracking-[0.25em] text-brand-orange">
+                Get in Touch
               </span>
+              <h2 className="font-sans text-2xl font-black uppercase tracking-tight text-white sm:text-3xl lg:text-4xl">
+                Contact Us
+              </h2>
             </div>
+            <span className="hidden font-mono text-xs tabular-nums text-white/50 sm:block">
+              04 / 04
+            </span>
+          </div>
+        </div>
+      </div>
 
-            <h2 className="font-sans text-[clamp(2.5rem,6vw,5rem)] font-black uppercase leading-[0.9] tracking-tighter text-brand-navy">
-              Contact<br />The Network
-            </h2>
-
-            <p className="max-w-md text-base leading-relaxed text-neutral-600 md:text-lg">
-              Direct access lines to the Siara TV central production and support teams. Select your channel below.
-            </p>
+      {/* ── Contact channels + socials ── */}
+      <div className="mx-auto max-w-6xl px-4 py-16 md:px-8 md:py-24">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+          {/* ── Left: headline ── */}
+          <div className="lg:col-span-4">
+            <h3 className="max-w-xs font-sans text-2xl font-semibold leading-[1.15] tracking-tight text-brand-navy sm:text-3xl md:text-4xl lg:sticky lg:top-28">
+              Reach the studio, on any line.
+            </h3>
           </div>
 
-          {/* Right Block: Technical Data Array */}
-          <div className="lg:col-span-7 flex flex-col gap-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Email Block */}
-              {contactData.email && (
-                <a
-                  href={`mailto:${contactData.email}`}
-                  className="group flex flex-col justify-between border border-neutral-200 bg-white p-6 transition-colors duration-300 hover:border-neutral-900"
-                >
-                  <Mail className="mb-6 h-6 w-6 text-brand-orange transition-transform duration-300 group-hover:scale-110" />
-                  <div>
-                    <p className="mb-1 font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-400">
-                      Electronic Mail
-                    </p>
-                    <p className="text-sm font-bold text-brand-navy truncate">
-                      {contactData.email}
-                    </p>
-                  </div>
-                </a>
-              )}
+          {/* ── Right: frequency directory ── */}
+          <div className="lg:col-span-8">
+            <ul className="border-t border-neutral-200">
+              {channels.map((channel) => {
+                const Icon = channel.icon;
+                const isLink = Boolean(channel.href);
+                const Wrapper = isLink ? "a" : "div";
 
-              {/* Phone Block */}
-              {contactData.phone && (
-                <div className="group flex flex-col justify-between border border-neutral-200 bg-white p-6 transition-colors duration-300 hover:border-neutral-900">
-                  <Phone className="mb-6 h-6 w-6 text-brand-orange transition-transform duration-300 group-hover:scale-110" />
-                  <div>
-                    <p className="mb-1 font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-400">
-                      Voice Transmission
-                    </p>
-                    <p className="text-sm font-bold text-brand-navy">
-                      {contactData.phone}
-                    </p>
-                  </div>
-                </div>
-              )}
-            </div>
+                return (
+                  <li key={channel.key}>
+                    <Wrapper
+                      {...(isLink ? { href: channel.href } : {})}
+                      className={`group flex items-center gap-5 border-b border-neutral-200 py-5 transition-colors md:gap-8 md:py-6 ${
+                        isLink ? "cursor-pointer hover:bg-neutral-50" : ""
+                      }`}
+                    >
+                      <span className="hidden w-14 shrink-0 font-mono text-xs tabular-nums text-brand-orange sm:block">
+                        {channel.freq}
+                      </span>
 
-            {/* Address Block */}
-            {contactData.address && (
-              <div className="group flex flex-col border border-neutral-200 bg-neutral-50 p-6 md:p-8">
-                <MapPin className="mb-6 h-6 w-6 text-brand-orange" />
-                <div>
-                  <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-400">
-                    Physical Coordinates
-                  </p>
-                  <p className="max-w-sm text-sm font-bold leading-relaxed text-brand-navy">
-                    {contactData.address}
-                  </p>
-                </div>
-              </div>
-            )}
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-brand-navy text-white transition-colors group-hover:bg-brand-orange group-hover:text-black">
+                        <Icon className="h-4 w-4" />
+                      </span>
 
-            {/* Social Frequencies */}
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-[10px] font-semibold uppercase tracking-widest text-neutral-400">
+                          {channel.label}
+                        </span>
+                        <span className="block truncate text-sm font-semibold text-brand-navy sm:text-base">
+                          {channel.value}
+                        </span>
+                      </span>
+
+                      {isLink && (
+                        <ArrowUpRight className="h-4 w-4 shrink-0 text-neutral-300 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand-navy" />
+                      )}
+                    </Wrapper>
+                  </li>
+                );
+              })}
+            </ul>
+
+            {/* Social links */}
             {contactData.socialLinks && contactData.socialLinks.length > 0 && (
-              <div className="mt-4 pt-8 border-t border-neutral-200">
-                <p className="mb-5 font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-400">
-                  Digital Frequencies
+              <div className="mt-10">
+                <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-400">
+                  Follow the Signal
                 </p>
                 <div className="flex flex-wrap gap-3">
                   {contactData.socialLinks.map((social) => {
@@ -126,9 +171,14 @@ export default function Contact() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={social.platform}
-                        className="group flex h-14 w-14 items-center justify-center bg-neutral-100 text-neutral-600 transition-all duration-300 hover:bg-brand-navy hover:text-white"
+                        className="group flex items-center gap-2.5 border border-neutral-200 px-4 py-3 transition-colors hover:border-brand-navy hover:bg-brand-navy"
                       >
-                        {Icon && <Icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />}
+                        {Icon && (
+                          <Icon className="h-4 w-4 text-neutral-500 transition-colors group-hover:text-white" />
+                        )}
+                        <span className="text-xs font-medium capitalize text-neutral-500 transition-colors group-hover:text-white">
+                          {social.platform}
+                        </span>
                       </a>
                     );
                   })}

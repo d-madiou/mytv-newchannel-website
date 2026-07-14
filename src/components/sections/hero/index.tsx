@@ -1,29 +1,55 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { heroData } from "@/data/hero";
 
 const ROTATE_INTERVAL_MS = 6000;
 
 export default function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [filled, setFilled] = useState(false);
+
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
   const totalPrograms = heroData.featuredPrograms.length;
 
-  useEffect(() => {
-    const timer = setInterval(() => {
+  const startTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % totalPrograms);
     }, ROTATE_INTERVAL_MS);
-    return () => clearInterval(timer);
   }, [totalPrograms]);
+
+  useEffect(() => {
+    startTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [startTimer]);
+
+  useEffect(() => {
+    setFilled(false);
+    const raf = requestAnimationFrame(() => {
+      requestAnimationFrame(() => setFilled(true));
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [activeIndex]);
 
   const goToPrev = () => {
     setActiveIndex((prev) => (prev === 0 ? totalPrograms - 1 : prev - 1));
+    startTimer();
   };
 
   const goToNext = () => {
     setActiveIndex((prev) => (prev + 1) % totalPrograms);
+    startTimer();
+  };
+
+  const goToIndex = (idx: number) => {
+    setActiveIndex(idx);
+    startTimer();
   };
 
   if (!heroData || totalPrograms === 0) return null;
@@ -31,139 +57,181 @@ export default function Hero() {
   const activeProgram = heroData.featuredPrograms[activeIndex];
 
   return (
-    <section className="relative flex min-h-[75svh] w-full flex-col justify-end overflow-hidden bg-white lg:min-h-[85svh]">
-      {/* ── Cinematic Backgrounds ── */}
-      <div className="absolute inset-0 z-0 bg-brand-navy">
+    <section className="relative flex min-h-[90vh] w-full flex-col justify-between bg-brand-navy pt-24 text-white">
+      
+      {/* ── Full-Bleed Background Carousel ── */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
         {heroData.backgroundImages.map((src, idx) => (
           <div
             key={src}
-            className={`absolute inset-0 transition-all duration-[1.5s] ease-out ${
+            className={`absolute inset-0 h-full w-full transition-all ease-in-out duration-[1200ms] ${
               idx === activeIndex
-                ? "z-10 scale-100 opacity-100"
-                : "z-0 scale-105 opacity-0"
+                ? "z-10 opacity-30 scale-100"
+                : "z-0 opacity-0 scale-105"
             }`}
           >
             <Image
               src={src}
-              alt="Featured program background"
+              alt=""
               fill
-              className="object-cover"
               priority={idx === 0}
+              sizes="100vw"
+              className="object-cover object-center"
             />
           </div>
         ))}
-
-        {/* Reduced top gradient, strong bottom for readability */}
-        <div className="absolute inset-0 z-20 bg-gradient-to-b from-brand-navy/30 via-transparent to-transparent" />
-        <div className="absolute inset-0 z-20 bg-gradient-to-t from-brand-navy via-brand-navy/60 to-transparent" />
+        {/* Soft, rich ambient gradients protecting text legibility */}
+        <div className="absolute inset-x-0 bottom-0 z-20 h-2/3 bg-gradient-to-t from-brand-navy via-brand-navy/60 to-transparent" />
+        <div className="absolute inset-x-0 top-0 z-20 h-1/2 bg-gradient-to-b from-brand-navy via-brand-navy/55 to-transparent" />
       </div>
 
-      {/* ── Main Content Overlay ── */}
-      <div className="relative z-30 mx-auto flex h-full w-full max-w-7xl flex-col justify-between px-6 pb-12 pt-8 md:px-8 md:pb-16 md:pt-16">
-        {/* Top: Badge & Network Logo */}
-        <div className="flex items-start justify-between">
-          <div className="inline-flex items-center gap-3 bg-brand-orange px-4 py-2 shadow-lg">
-            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">
-              Featured Program
+      {/* ── Main Layout Container ── */}
+      <div className="relative z-30 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-between px-6 py-12 md:px-12 md:py-16">
+        
+        {/* Top Section: Corporate Brand Header */}
+        <div className="flex items-center justify-between border-b border-white/10 pb-6">
+          <div className="relative h-9 w-28 md:h-10 md:w-36">
+            <Image
+              src={heroData.logoUrl}
+              alt="Arus TV"
+              fill
+              priority
+              className="object-contain object-left"
+            />
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-orange" />
+            <span className="font-mono text-xs font-bold uppercase tracking-widest text-white/80">
+              {heroData.badge}
             </span>
           </div>
         </div>
 
-        {/* Bottom Area: Watch On, Title & Carousel */}
-        <div className="mt-auto flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
-          {/* Left: Watch On logos → then program title */}
-          <div className="max-w-3xl space-y-5">
-            {/* Watch On row – larger logos, immediately after badge */}
-            <div className="flex items-center gap-4">
-              <span className="text-xs font-semibold uppercase tracking-widest text-white/70">
-                Watch on
-              </span>
-              <div className="flex items-center gap-4">
-                <Image
-                  src="/images/hero/mana.png"
-                  alt="Mana"
-                  width={72}
-                  height={32}
-                  className="h-8 w-auto object-contain"
-                />
-                <div className="h-6 w-px bg-white/40" />
-                <Image
-                  src="/images/where-to-watch/mytv.png"
-                  alt="MYTV"
-                  width={88}
-                  height={32}
-                  className="h-8 w-auto object-contain"
-                />
-              </div>
+        {/* Middle Section: Sophisticated Two-Column Info Box */}
+        <div className="grid grid-cols-1 gap-12 py-16 md:py-24 lg:grid-cols-12 lg:items-end lg:gap-20">
+          
+          {/* Left Column: Mission / Tagline statement */}
+          <div className="space-y-6 lg:col-span-7">
+            <h2 className="font-sans text-3xl font-extrabold uppercase leading-[1.05] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+              Broadcasting <br />
+              <span className="text-brand-orange">with purpose.</span>
+            </h2>
+            <p className="max-w-xl font-sans text-base leading-relaxed text-white/80 md:text-lg">
+              {heroData.tagline}
+            </p>
+            
+            <div className="pt-2">
+              <a
+                href={heroData.ctaUrl}
+                className="group inline-flex items-center gap-3 bg-brand-orange px-6 py-3.5 font-sans text-xs font-bold uppercase tracking-wider text-black transition-colors hover:bg-white"
+              >
+                <span>{heroData.ctaText}</span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
             </div>
-
-            {/* Program title – compact, after logos */}
-            <h1
-              key={activeProgram.id}
-              className="animate-in slide-in-from-bottom-4 fade-in duration-700 font-sans text-2xl font-extrabold uppercase tracking-tight text-white sm:text-3xl lg:text-4xl"
-            >
-              {activeProgram.title}
-            </h1>
           </div>
 
-          {/* Right: Program Posters Carousel */}
-          <div className="flex flex-col gap-4 border-t border-white/20 pt-6 lg:border-t-0 lg:pt-0 shrink-0">
-            <div className="flex items-center justify-between lg:justify-end gap-6">
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/50">
-                Up Next
+          {/* Right Column: Featured Program Information card */}
+          <div className="space-y-8 border-t border-white/10 pt-8 lg:col-span-5 lg:border-t-0 lg:pt-0 lg:pl-10">
+            <div className="space-y-3">
+              <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-brand-orange">
+                Now Showcasing
               </span>
-
-              <div className="flex gap-1">
-                <button
-                  onClick={goToPrev}
-                  className="flex h-8 w-8 items-center justify-center border border-white/20 bg-brand-navy/40 backdrop-blur-md transition-colors hover:bg-brand-orange hover:text-black"
-                >
-                  <ArrowLeft className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={goToNext}
-                  className="flex h-8 w-8 items-center justify-center border border-white/20 bg-brand-navy/40 backdrop-blur-md transition-colors hover:bg-brand-orange hover:text-black"
-                >
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-              </div>
+              <h3 className="font-sans text-2xl font-bold tracking-tight text-white transition-all duration-500">
+                {activeProgram.title}
+              </h3>
+              <p className="font-sans text-sm leading-relaxed text-white/70">
+                {activeProgram.description}
+              </p>
             </div>
 
-            {/* Poster Track */}
-            <div className="flex items-center gap-3 overflow-x-auto pb-4 scrollbar-hide lg:pb-0">
-              {heroData.featuredPrograms.map((program, idx) => (
-                <button
-                  key={program.id}
-                  onClick={() => setActiveIndex(idx)}
-                  className={`group relative aspect-[16/9] w-32 shrink-0 overflow-hidden border transition-all duration-500 sm:w-40 md:w-48 ${
-                    idx === activeIndex
-                      ? "border-brand-orange ring-1 ring-brand-orange scale-100 opacity-100"
-                      : "border-white/10 opacity-40 hover:opacity-100 hover:border-white/40 scale-95"
-                  }`}
-                >
+            {/* Premium, Simple Watch-On Partners Segment */}
+            <div className="space-y-3">
+              <span className="block font-mono text-[9px] font-bold uppercase tracking-widest text-white/40">
+                Watch Live On
+              </span>
+              <div className="flex items-center gap-5">
+                <div className="relative h-5 w-14 opacity-80 transition-opacity hover:opacity-100">
                   <Image
-                    src={program.posterUrl}
-                    alt={program.title}
+                    src="/images/hero/mana.png"
+                    alt="Mana"
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    sizes="(max-width: 768px) 128px, 192px"
+                    className="object-contain object-left"
                   />
-                  <div
-                    className={`absolute inset-0 bg-brand-navy/40 transition-opacity ${
-                      idx === activeIndex
-                        ? "opacity-0"
-                        : "opacity-100 group-hover:opacity-50"
-                    }`}
+                </div>
+                <div className="h-3.5 w-px bg-white/20" />
+                <div className="relative h-5 w-14 opacity-80 transition-opacity hover:opacity-100">
+                  <Image
+                    src="/images/where-to-watch/mytv.png"
+                    alt="MYTV"
+                    fill
+                    className="object-contain object-left"
                   />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-2">
-                    <p className="text-left text-[9px] font-bold lowercase tracking-wider text-white line-clamp-1">
-                      {program.title}
-                    </p>
-                  </div>
-                </button>
-              ))}
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+
+      </div>
+
+      {/* ── Bottom Section: Minimalist University/Agency Carousel Indicators ── */}
+      <div className="relative z-30 border-t border-white/10 bg-brand-navy/90 px-6 py-6 backdrop-blur-md md:px-12">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          
+          {/* Numeric Timeline Indicator & Running Progress Line */}
+          <div className="flex flex-1 items-center gap-6">
+            <div className="flex items-center gap-1.5 font-mono text-xs font-bold text-white/50">
+              <span className="text-white">0{activeIndex + 1}</span>
+              <span>/</span>
+              <span>0{totalPrograms}</span>
+            </div>
+            
+            {/* Minimal Horizontal Navigation Track */}
+            <div className="relative h-[2px] max-w-xs flex-1 bg-white/10">
+              <div
+                className={`h-full bg-brand-orange transition-[width] duration-[6000ms] ease-linear ${
+                  filled ? "w-full" : "w-0"
+                }`}
+              />
+            </div>
+          </div>
+
+          {/* Simple Clean Toggle Controllers */}
+          <div className="flex items-center gap-2 self-end sm:self-auto">
+            {heroData.featuredPrograms.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => goToIndex(idx)}
+                className={`h-2 w-2 rounded-full transition-all ${
+                  idx === activeIndex
+                    ? "bg-brand-orange w-6"
+                    : "bg-white/20 hover:bg-white/40"
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+            
+            <div className="ml-4 h-5 w-px bg-white/25" />
+
+            <div className="flex items-center gap-1">
+              <button
+                onClick={goToPrev}
+                aria-label="Previous slide"
+                className="flex h-8 w-8 items-center justify-center border border-white/15 text-white/60 transition-colors hover:border-brand-orange hover:text-brand-orange"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <button
+                onClick={goToNext}
+                aria-label="Next slide"
+                className="flex h-8 w-8 items-center justify-center border border-white/15 text-white/60 transition-colors hover:border-brand-orange hover:text-brand-orange"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

@@ -8,5 +8,6 @@ export interface ContactData {
   email: string;
   phone?: string;
   address?: string;
+  parentCompany?: string;
   socialLinks: SocialLink[];
 }
