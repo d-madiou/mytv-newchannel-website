@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { siteConfig } from "@/config/site";
 
 const landingNavLinks = [
@@ -17,17 +18,19 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         
-        {/* Logo - Exact Match */}
-        <Link href="#home" className="flex flex-col leading-none">
-          <span className="text-[28px] font-black uppercase tracking-tight text-[#F37A20]">
-            SIARA<span className="text-[17px] align-top">TV</span>
-          </span>
-          <span className="mt-0.5 text-[9px] font-bold uppercase tracking-[0.25em] text-[#002B4A]/70">
-            Inform &bull; Connect &bull; Empower
-          </span>
+        {/* Logo - Using Real Image */}
+        <Link href="#home" className="flex items-center">
+          <Image
+            src="/images/logo/logosiara.png"
+            alt={siteConfig.name}
+            width={140}
+            height={40}
+            className="h-auto w-[130px] object-contain"
+            priority
+          />
         </Link>
 
-        {/* Nav Links - Fixed Syntax */}
+        {/* Nav Links */}
         <nav className="hidden items-center gap-8 lg:flex">
           {landingNavLinks.map((link) => (
             <Link
@@ -40,7 +43,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Right Badge - Exact Match */}
+        {/* Right Badge */}
         <div className="hidden flex-col items-end rounded-md bg-[#002B4A] px-5 py-2 text-right sm:flex">
           <span className="text-[8px] font-medium uppercase tracking-widest text-white/60">
             A Channel by
