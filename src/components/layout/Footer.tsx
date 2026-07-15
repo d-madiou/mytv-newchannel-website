@@ -13,11 +13,11 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-brand-navy text-white">
-      <div className="mx-auto max-w-7xl px-6 py-8 md:px-8 md:py-10">
+    <footer className="border-t-2 border-brand-orange bg-neutral-950 text-white">
+      <div className="mx-auto max-w-7xl px-6 py-12 md:px-8 md:py-16">
         
         {/* ── Console Eyebrow Bar ── */}
-        <div className="mb-8 flex items-center justify-between border-b border-white/10 pb-4">
+        <div className="mb-12 flex items-center justify-between border-b border-white/10 pb-4">
           <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-500">
             End of Transmission
           </span>
@@ -27,7 +27,7 @@ export default function Footer() {
         </div>
 
         {/* ── Main Grid Layout ── */}
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
           
           {/* ── Left Column: Brand Ident & Info ── */}
           <div className="flex flex-col items-start lg:col-span-7">
@@ -57,23 +57,23 @@ export default function Footer() {
               </div>
             </Link>
 
-            <p className="mt-4 max-w-sm text-sm font-medium leading-relaxed text-neutral-400">
+            <p className="mt-5 max-w-sm text-sm font-medium leading-relaxed text-neutral-400">
               Saluran televisyen 24 jam baharu di bawah pengurusan{" "}
               <span className="font-bold text-white">ESPACE TV</span>.
             </p>
 
             {/* ── Watch On Platforms ── */}
-            <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
+            <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
               <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-500">
                 Watch on
               </span>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-5">
                 <Image
                   src="/images/hero/mana.png"
                   alt="Mana"
                   width={72}
                   height={28}
-                  className="h-6 w-auto object-contain opacity-90 transition-opacity hover:opacity-100"
+                  className="h-6 w-auto object-contain"
                 />
                 <div className="h-4 w-px bg-white/10" />
                 <Image
@@ -81,7 +81,7 @@ export default function Footer() {
                   alt="MYTV"
                   width={88}
                   height={28}
-                  className="h-6 w-auto object-contain opacity-90 transition-opacity hover:opacity-100"
+                  className="h-6 w-auto object-contain"
                 />
               </div>
             </div>
@@ -90,7 +90,7 @@ export default function Footer() {
             <button
               onClick={scrollToTop}
               aria-label="Kembali ke atas"
-              className="group mt-8 flex h-10 items-center gap-3 bg-white/5 px-5 transition-colors duration-200 hover:bg-brand-orange"
+              className="group mt-10 flex h-10 items-center gap-3 bg-white/5 px-5 transition-colors duration-200 hover:bg-brand-orange"
             >
               <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-white transition-colors duration-200 group-hover:text-black">
                 Back to Top
@@ -101,8 +101,8 @@ export default function Footer() {
           </div>
 
           {/* ── Right Column: Numbered Directory ── */}
-          <div className="lg:col-span-5 pt-2 lg:pt-0">
-            <span className="mb-3 block font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-500">
+          <div className="lg:col-span-5 pt-4 lg:pt-0">
+            <span className="mb-4 block font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-500">
               Site Directory
             </span>
             
@@ -111,10 +111,10 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="group flex items-center justify-between border-b border-white/10 py-3 transition-colors duration-300 hover:border-brand-orange"
+                  className="group flex items-center justify-between border-b border-white/10 py-4 transition-colors duration-300 hover:border-brand-orange"
                 >
                   <div className="flex items-center gap-5">
-                    <span className="font-mono text-[11px] font-bold text-neutral-500 transition-colors duration-300 group-hover:text-brand-orange">
+                    <span className="font-mono text-[11px] font-bold text-neutral-600 transition-colors duration-300 group-hover:text-brand-orange">
                       {String(idx + 1).padStart(2, "0")}
                     </span>
                     <span className="font-sans text-[12px] font-bold uppercase tracking-widest text-neutral-300 transition-colors duration-300 group-hover:text-white">
@@ -130,7 +130,7 @@ export default function Footer() {
         </div>
 
         {/* ── Bottom Status Strip ── */}
-        <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-5 sm:flex-row sm:items-center">
+        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center">
           <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-500">
             &copy; {currentYear} {siteConfig.name}. Hak Cipta Terpelihara.
           </p>

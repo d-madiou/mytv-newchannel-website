@@ -37,57 +37,99 @@ export default function ContactTeaser() {
   if (!contactData) return null;
 
   return (
-    <section className="border-t border-neutral-200 bg-[#FAFAFA] px-6 py-16 md:px-8 md:py-24">
-      <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
-        
-        {/* Clean typographic label */}
-        <span className="mb-4 block font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-400">
-          Global Desk
-        </span>
-        
-        <h2 className="mb-4 font-sans text-2xl font-bold uppercase tracking-tight text-brand-navy md:text-3xl">
-          Connect With Us
-        </h2>
-        
-        <p className="mb-10 text-sm leading-relaxed text-neutral-600 md:text-base">
-          Reach out to our production teams or stay connected across our active network channels.
-        </p>
+    <section className="relative overflow-hidden bg-brand-navy py-24 md:py-32">
+      
+      {/* Subtle background grid accent */}
+      <div className="absolute inset-0 z-0 opacity-20 mix-blend-overlay bg-[radial-gradient(circle,rgba(255,255,255,0.2)_1px,transparent_1px)] bg-[size:16px_16px]" />
+      <div className="absolute -left-12 -top-12 z-0 h-48 w-48 border border-white/5 bg-transparent" />
+      <div className="absolute bottom-0 right-0 z-0 h-px w-2/3 bg-gradient-to-l from-brand-orange to-transparent opacity-50" />
 
-        {/* ── Side-by-Side Modular Array ── */}
-        <div className="flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-4">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
           
-          {/* Individual Blue Social Containers */}
-          {contactData.socialLinks && contactData.socialLinks.length > 0 && (
-            <div className="flex items-center gap-2">
-              {contactData.socialLinks.map((social) => {
-                const Icon = iconMap[social.iconName as keyof typeof iconMap];
-                return (
-                  <a
-                    key={social.platform}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.platform}
-                    className="flex h-14 w-14 items-center justify-center bg-brand-navy text-white transition-colors duration-200 hover:bg-brand-orange hover:text-black"
-                  >
-                    {Icon && <Icon className="h-5 w-5" />}
-                  </a>
-                );
-              })}
+          {/* ── Left Column: Typography & Corporate HQ ── */}
+          <div className="flex flex-col items-start justify-center">
+            
+            {/* Structural Eyebrow */}
+            <div className="mb-6 flex items-center gap-3">
+              <span className="h-0.5 w-6 bg-brand-orange" />
+              <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-brand-orange">
+                Network Operations
+              </span>
             </div>
-          )}
+            
+            <h2 className="mb-6 font-sans text-4xl font-black uppercase leading-[0.95] tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Connect <br className="hidden sm:block" /> With Us.
+            </h2>
+            
+            <p className="mb-12 max-w-md font-sans text-sm leading-relaxed text-white/70">
+              Reach out to our production teams, submit commercial inquiries, or stay connected across our active network broadcast channels.
+            </p>
 
-          {/* Primary Action Button */}
-          <Link
-            href="/contact"
-            className="group flex h-14 items-center justify-center gap-3 bg-brand-navy px-8 font-sans text-[11px] font-bold uppercase tracking-widest text-white shadow-sm transition-colors duration-200 hover:bg-brand-orange hover:text-black"
-          >
-            <span>Access Directory</span>
-            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-          </Link>
+            {/* Structured HQ Metadata */}
+            <div className="border-l-2 border-brand-orange pl-6">
+              <span className="mb-2 block font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
+                HQ Coordinates
+              </span>
+              <p className="font-sans text-sm font-bold uppercase tracking-wider text-white">
+                Global Desk
+              </p>
+              <p className="font-sans text-xs text-white/60">
+                Cyberjaya, Selangor, Malaysia
+              </p>
+            </div>
+            
+          </div>
+
+          {/* ── Right Column: Social Matrix & Action Array ── */}
+          <div className="flex flex-col justify-center border-t border-white/10 pt-10 lg:border-l lg:border-t-0 lg:pl-16 lg:pt-0">
+            
+            <span className="mb-6 block font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
+              Active Frequencies
+            </span>
+
+            {/* Social Grid */}
+            {contactData.socialLinks && contactData.socialLinks.length > 0 && (
+              <div className="mb-12 flex flex-wrap gap-4">
+                {contactData.socialLinks.map((social) => {
+                  const Icon = iconMap[social.iconName as keyof typeof iconMap];
+                  return (
+                    <a
+                      key={social.platform}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.platform}
+                      className="group flex h-16 w-16 items-center justify-center border border-white/20 bg-transparent text-white transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-brand-orange hover:bg-brand-orange hover:text-brand-navy hover:shadow-lg hover:shadow-brand-orange/20"
+                    >
+                      {Icon && <Icon className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" />}
+                    </a>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Signature Animated CTA (Inverted for Dark Mode) */}
+            <div>
+              <Link
+                href="/contact"
+                className="group relative inline-flex items-center gap-6 overflow-hidden bg-white py-3 pl-8 pr-3 shadow-lg transition-all duration-500 hover:shadow-xl hover:shadow-brand-orange/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy"
+              >
+                <span className="absolute inset-0 z-0 h-full w-full origin-left scale-x-0 bg-brand-orange transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100" />
+                
+                <span className="relative z-10 font-mono text-xs font-bold uppercase tracking-[0.2em] text-brand-navy transition-colors duration-300 group-hover:text-brand-navy">
+                  Access Directory
+                </span>
+                
+                <span className="relative z-10 flex h-10 w-10 items-center justify-center bg-brand-navy/5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:bg-brand-navy/10">
+                  <ArrowRight className="h-4 w-4 text-brand-navy transition-transform duration-300 group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            </div>
+
+          </div>
           
         </div>
-        
       </div>
     </section>
   );

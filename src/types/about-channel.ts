@@ -5,4 +5,5 @@ export interface AboutChannelData {
   language: string;
   launchDate: string;
   highlights: string[];
+  imageUrl: string;
 }

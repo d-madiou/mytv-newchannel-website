@@ -5,13 +5,13 @@ export const siteConfig = {
   url: "https://www.siaratv-placeholder.com",
   ogImage: "/images/shared/og-image-placeholder.jpg",
   navLinks: [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Where to Watch", href: "/where-to-watch" },
-    { label: "Advertise", href: "/advertise" },
-    { label: "News", href: "/news" },
-    { label: "Contact", href: "/contact" },
-  ],
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Where to Watch", href: "/where-to-watch" },
+  { label: "Program", href: "/program" },
+  { label: "News", href: "/news" },
+  { label: "Contact", href: "/contact" },
+],
   brand: {
     colors: {
       primary: "#FE7F2D",

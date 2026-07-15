@@ -7,136 +7,166 @@ import { Smartphone, Monitor, MapPin } from "lucide-react";
 export default function WhereToWatch() {
   return (
     <section className="bg-white">
-      {/* ── Top banner: Hero section with refined textual scaling ── */}
-      <div className="relative overflow-hidden">
+      {/* ── Top Hero: Editorial Full-Bleed ── */}
+      <div className="relative flex min-h-[45vh] w-full items-end justify-start overflow-hidden bg-brand-navy">
         <Image
           src="/images/where-to-watch/imageWatch.png"
           alt="Watch Siara TV on your devices"
           fill
-          className="object-cover object-[center_35%]"
+          className="object-cover object-[center_35%] opacity-40 mix-blend-luminosity grayscale"
           priority
           sizes="100vw"
         />
-        {/* Immersive overlay styling */}
-        <div className="absolute inset-0 bg-brand-navy/75" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[length:12px_12px]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/60 to-transparent" />
+        
+        {/* Subtle grid texture */}
+        <div className="absolute inset-0 z-0 mix-blend-overlay bg-[radial-gradient(circle,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:12px_12px]" />
 
-        <div className="relative mx-auto max-w-6xl px-6 pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24">
-          <div className="space-y-4">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 pt-32 lg:px-8 lg:pb-24">
+          <div className="max-w-3xl space-y-6">
             <div className="flex items-center gap-3">
-              <span className="h-px w-8 bg-brand-orange" />
-              <span className="text-xs font-bold uppercase tracking-[0.3em] text-brand-orange">
-                Tune In
+              <span className="h-0.5 w-8 bg-brand-orange" />
+              <span className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-brand-orange">
+                Access Network
               </span>
             </div>
-            <h2 className="text-3xl font-black uppercase tracking-tight text-white sm:text-4xl lg:text-5xl leading-none">
+            <h1 className="font-sans text-4xl font-black uppercase leading-[0.95] tracking-tight text-white sm:text-5xl lg:text-7xl">
               Where to Watch
-            </h2>
-            <p className="max-w-2xl text-base text-white/90 md:text-lg font-medium leading-relaxed">
-              Siara TV is available across satellite and streaming platforms, so you never miss a single moment.
+            </h1>
+            <p className="max-w-xl font-sans text-sm leading-relaxed text-white/70 sm:text-base">
+              Siara TV is available across satellite and digital streaming platforms. Access our exclusive broadcasts, premium segments, and live shows seamlessly from any location.
             </p>
           </div>
         </div>
-
-        {/* Smooth layout transition clip */}
-        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-white" />
       </div>
 
-      {/* ── Main Content Area ── */}
-      <div className="mx-auto max-w-6xl px-6 py-10 sm:py-16 lg:py-20">
+      {/* ── Main Content Area: Architectural Grid ── */}
+      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-32">
         
-        {/* Stream Online Block */}
-        <div className="mb-14">
-          <div className="mb-8 flex items-center gap-2.5">
-            <Smartphone className="h-4 w-4 text-brand-orange" />
-            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-black/50">
-              Stream Online
-            </h3>
-          </div>
-          <div className="flex flex-wrap items-center gap-8 sm:gap-12">
-            {whereToWatchData.ottLinks.map((link) => (
-              <a
-                key={link.platform}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-all duration-300 hover:scale-102 hover:opacity-80 focus-visible:outline-2 focus-visible:outline-brand-orange"
-              >
-                <div className="w-32 sm:w-40">
-                  <Image
-                    src={link.iconUrl}
-                    alt={link.platform}
-                    width={160}
-                    height={50}
-                    className="h-auto w-full object-contain"
-                    style={{ width: "100%", height: "auto" }}
-                  />
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Digital Terrestrial TV Section */}
-        <div className="mb-14">
-          <div className="mb-6 flex items-center gap-2.5">
-            <Monitor className="h-4 w-4 text-brand-orange" />
-            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-black/50">
-              Digital Terrestrial TV
-            </h3>
-          </div>
+        {/* Network Infrastructure Split */}
+        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
           
-          <div className="max-w-xs border border-black/10 bg-white p-6 transition-all duration-300 hover:border-black/20">
-            <div className="flex items-center gap-6">
-              <div className="h-10 w-24">
+          {/* Left Column: Digital & OTT Network (Parent: Mana) */}
+          <div className="flex flex-col border-t-4 border-brand-navy pt-8">
+            <div className="mb-10 flex items-center gap-3">
+              <Smartphone className="h-6 w-6 text-brand-orange" />
+              <h2 className="font-sans text-2xl font-black uppercase tracking-tight text-brand-navy">
+                Digital Streaming
+              </h2>
+            </div>
+            
+            {/* OTT Parent Carrier */}
+            <div className="mb-12">
+              <span className="mb-4 block font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400">
+                Powered By
+              </span>
+              {/* Dark block to ensure the white text in the Mana logo is fully visible */}
+              <div className="inline-flex items-center justify-center bg-brand-navy px-8 py-5 shadow-lg">
                 <Image
-                  src="/images/where-to-watch/mytv.png"
-                  alt="MYTV Broadcast Network"
-                  width={100}
-                  height={50}
-                  className="h-full w-full object-contain"
-                  style={{ width: "100%", height: "100%" }}
+                  src="/images/hero/mana.png"
+                  alt="Mana Digital"
+                  width={140}
+                  height={45}
+                  className="h-8 w-auto object-contain sm:h-10"
                 />
               </div>
-              <div className="h-10 w-px bg-black/10" />
-              <div className="flex flex-col">
-                <span className="text-[9px] font-bold text-black/40 uppercase tracking-wider">Channel</span>
-                <span className="text-xl font-black text-brand-navy tracking-tight leading-none">
-                  {whereToWatchData.satellite[0].frequency}
+            </div>
+
+            {/* Mobile / App Logos (Naked Display, Full Color) */}
+            <div className="border-t border-neutral-150 pt-8">
+              <span className="mb-6 block font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400">
+                Available Apps & Platforms
+              </span>
+              <div className="flex flex-wrap items-center gap-8 sm:gap-10">
+                {whereToWatchData.ottLinks.map((link) => (
+                  <a
+                    key={link.platform}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative block transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 hover:-translate-y-0.5"
+                  >
+                    <Image
+                      src={link.iconUrl}
+                      alt={link.platform}
+                      width={120}
+                      height={40}
+                      className="h-8 w-auto object-contain sm:h-9"
+                    />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Terrestrial Network (Parent: MYTV) */}
+          <div className="flex flex-col border-t-4 border-brand-navy pt-8">
+            <div className="mb-10 flex items-center gap-3">
+              <Monitor className="h-6 w-6 text-brand-orange" />
+              <h2 className="font-sans text-2xl font-black uppercase tracking-tight text-brand-navy">
+                Terrestrial TV
+              </h2>
+            </div>
+            
+            {/* DTT Parent Carrier */}
+            <div className="mb-12">
+              <span className="mb-4 block font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400">
+                Broadcast Carrier
+              </span>
+              <Image
+                src="/images/where-to-watch/mytv.png"
+                alt="MYTV Broadcasting"
+                width={160}
+                height={50}
+                className="h-10 w-auto object-contain"
+              />
+            </div>
+
+            {/* Channel Frequency */}
+            <div className="border-t border-neutral-150 pt-8">
+              <span className="mb-4 block font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400">
+                Assigned Channel
+              </span>
+              <div className="flex items-baseline gap-4">
+                <span className="font-sans text-7xl font-black tracking-tighter text-brand-navy lg:text-8xl">
+                  {whereToWatchData.satellite?.[0]?.frequency || "114"}
+                </span>
+                <span className="font-mono text-sm font-bold uppercase tracking-widest text-brand-orange">
+                  HD
                 </span>
               </div>
             </div>
           </div>
+
         </div>
 
-        {/* Available Regions Layer */}
-        <div className="border-t border-black/10 pt-10">
-          <div className="mb-5 flex items-center gap-2.5">
-            <MapPin className="h-4 w-4 text-brand-orange" />
-            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-black/50">
-              Available Regions
-            </h3>
+        {/* ── Bottom Section: Broadcast Territories ── */}
+        <div className="mt-20 border-t border-neutral-200 pt-12 lg:mt-32">
+          <div className="mb-8 flex items-center gap-3">
+            <MapPin className="h-5 w-5 text-brand-navy" />
+            <h2 className="font-sans text-lg font-extrabold uppercase tracking-tight text-brand-navy">
+              Broadcast Territories
+            </h2>
           </div>
           
-          <div className="flex flex-wrap gap-2.5">
+          <div className="flex flex-wrap gap-4">
             {whereToWatchData.availableRegions.map((region) => (
-              <span
+              <div
                 key={region}
-                className="inline-flex items-center gap-2 rounded-full border border-brand-orange/20 bg-brand-orange/5 px-4 py-1.5 text-xs font-bold text-brand-orange tracking-wide uppercase"
+                className="flex items-center gap-3 bg-brand-navy px-5 py-2.5"
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-brand-orange animate-pulse" />
-                <div className="h-3.5 w-3.5 shrink-0 border border-black/5 shadow-2xs">
+                <div className="relative h-3.5 w-5 shrink-0">
                   <Image
                     src="/images/shared/malaysia-flag.png"
                     alt="Malaysia Flag"
-                    width={18}
-                    height={12}
-                    className="h-full w-full object-contain"
-                    style={{ width: "100%", height: "100%" }}
+                    fill
+                    className="object-cover"
                   />
                 </div>
-                <span>{region}</span>
-              </span>
+                <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-white">
+                  {region}
+                </span>
+              </div>
             ))}
           </div>
         </div>

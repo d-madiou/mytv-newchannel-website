@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { heroData } from "@/data/hero";
 
@@ -13,7 +14,7 @@ export default function Hero() {
 
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const totalPrograms = heroData.featuredPrograms.length;
+  const totalPrograms = heroData?.featuredPrograms?.length || 0;
 
   const startTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -23,11 +24,11 @@ export default function Hero() {
   }, [totalPrograms]);
 
   useEffect(() => {
-    startTimer();
+    if (totalPrograms > 0) startTimer();
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [startTimer]);
+  }, [startTimer, totalPrograms]);
 
   useEffect(() => {
     setFilled(false);
@@ -57,17 +58,17 @@ export default function Hero() {
   const activeProgram = heroData.featuredPrograms[activeIndex];
 
   return (
-    <section className="relative flex min-h-[90vh] w-full flex-col justify-between bg-brand-navy pt-24 text-white">
+    <section className="relative flex min-h-[90svh] w-full flex-col justify-center bg-[#0b192c] lg:min-h-[95vh]">
       
       {/* ── Full-Bleed Background Carousel ── */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {heroData.backgroundImages.map((src, idx) => (
           <div
             key={src}
-            className={`absolute inset-0 h-full w-full transition-all ease-in-out duration-[1200ms] ${
+            className={`absolute inset-0 h-full w-full transition-opacity ease-in-out duration-[1200ms] ${
               idx === activeIndex
-                ? "z-10 opacity-30 scale-100"
-                : "z-0 opacity-0 scale-105"
+                ? "z-10 opacity-100"
+                : "z-0 opacity-0"
             }`}
           >
             <Image
@@ -80,160 +81,148 @@ export default function Hero() {
             />
           </div>
         ))}
-        {/* Soft, rich ambient gradients protecting text legibility */}
-        <div className="absolute inset-x-0 bottom-0 z-20 h-2/3 bg-gradient-to-t from-brand-navy via-brand-navy/60 to-transparent" />
-        <div className="absolute inset-x-0 top-0 z-20 h-1/2 bg-gradient-to-b from-brand-navy via-brand-navy/55 to-transparent" />
+
+        {/* Deep Blue gradient masks adjusted for both mobile & desktop text legibility */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#0b192c] via-[#0b192c]/80 to-transparent md:w-3/4 lg:w-[70%]" />
+        <div className="absolute inset-x-0 bottom-0 z-10 h-2/3 bg-gradient-to-t from-[#0b192c] via-[#0b192c]/80 to-transparent md:h-1/2" />
       </div>
 
-      {/* ── Main Layout Container ── */}
-      <div className="relative z-30 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-between px-6 py-12 md:px-12 md:py-16">
+      {/* ── Main Layout Container (Left-aligned text block) ── */}
+      {/* Increased padding to naturally expand the overall height */}
+      <div className="relative z-20 mx-auto w-full max-w-7xl px-6 pt-28 pb-32 md:px-12 md:py-32">
         
-        {/* Top Section: Corporate Brand Header */}
-        <div className="flex items-center justify-between border-b border-white/10 pb-6">
-          <div className="relative h-9 w-28 md:h-10 md:w-36">
+        {/* Logo Placement */}
+        {heroData.logoUrl && (
+          <div className="mb-10 md:mb-12">
             <Image
               src={heroData.logoUrl}
-              alt="Arus TV"
-              fill
-              priority
-              className="object-contain object-left"
+              alt="Logo"
+              width={120}
+              height={40}
+              className="h-8 w-auto object-contain md:h-10"
             />
           </div>
-          <div className="flex items-center gap-3">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-orange" />
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-white/80">
+        )}
+
+        <div className="flex max-w-3xl flex-col items-start">
+          
+          {/* Eyebrow Text */}
+          {heroData.badge && (
+            <span className="mb-3 font-sans text-[10px] font-bold uppercase tracking-widest text-[#FFC107] sm:text-xs md:mb-4 md:text-sm">
               {heroData.badge}
             </span>
-          </div>
-        </div>
+          )}
 
-        {/* Middle Section: Sophisticated Two-Column Info Box */}
-        <div className="grid grid-cols-1 gap-12 py-16 md:py-24 lg:grid-cols-12 lg:items-end lg:gap-20">
-          
-          {/* Left Column: Mission / Tagline statement */}
-          <div className="space-y-6 lg:col-span-7">
-            <h2 className="font-sans text-3xl font-extrabold uppercase leading-[1.05] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
-              Broadcasting <br />
-              <span className="text-brand-orange">with purpose.</span>
-            </h2>
-            <p className="max-w-xl font-sans text-base leading-relaxed text-white/80 md:text-lg">
-              {heroData.tagline}
-            </p>
+          {/* Main Headline */}
+          <h1 
+            key={`title-${activeIndex}`}
+            className="animate-in fade-in slide-in-from-bottom-4 mb-4 font-sans text-4xl font-bold uppercase leading-[1.05] tracking-tight text-white duration-700 sm:text-5xl md:mb-6 md:text-6xl lg:text-7xl"
+          >
+            {activeProgram.title}
+          </h1>
+
+          {/* Paragraph Description */}
+          <p 
+            key={`desc-${activeIndex}`}
+            className="animate-in fade-in slide-in-from-bottom-4 mb-8 max-w-2xl font-sans text-sm leading-relaxed text-white/90 duration-700 delay-100 sm:text-base md:mb-10 md:text-lg"
+          >
+            {activeProgram.description}
+          </p>
+
+          {/* Buttons Layout */}
+          <div className="mb-10 flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:items-center md:mb-12">
             
-            <div className="pt-2">
-              <a
+            {/* Primary Button */}
+            {heroData.ctaUrl && heroData.ctaText && (
+              <Link
                 href={heroData.ctaUrl}
-                className="group inline-flex items-center gap-3 bg-brand-orange px-6 py-3.5 font-sans text-xs font-bold uppercase tracking-wider text-black transition-colors hover:bg-white"
+                className="group flex w-full items-center justify-center gap-3 bg-[#FFC107] px-8 py-3.5 font-sans text-sm font-bold uppercase tracking-wider text-black transition-transform hover:scale-105 sm:w-auto"
               >
                 <span>{heroData.ctaText}</span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </a>
-            </div>
-          </div>
+              </Link>
+            )}
 
-          {/* Right Column: Featured Program Information card */}
-          <div className="space-y-8 border-t border-white/10 pt-8 lg:col-span-5 lg:border-t-0 lg:pt-0 lg:pl-10">
-            <div className="space-y-3">
-              <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-brand-orange">
-                Now Showcasing
-              </span>
-              <h3 className="font-sans text-2xl font-bold tracking-tight text-white transition-all duration-500">
-                {activeProgram.title}
-              </h3>
-              <p className="font-sans text-sm leading-relaxed text-white/70">
-                {activeProgram.description}
-              </p>
-            </div>
-
-            {/* Premium, Simple Watch-On Partners Segment */}
-            <div className="space-y-3">
-              <span className="block font-mono text-[9px] font-bold uppercase tracking-widest text-white/40">
-                Watch Live On
-              </span>
-              <div className="flex items-center gap-5">
-                <div className="relative h-5 w-14 opacity-80 transition-opacity hover:opacity-100">
-                  <Image
-                    src="/images/hero/mana.png"
-                    alt="Mana"
-                    fill
-                    className="object-contain object-left"
-                  />
-                </div>
-                <div className="h-3.5 w-px bg-white/20" />
-                <div className="relative h-5 w-14 opacity-80 transition-opacity hover:opacity-100">
-                  <Image
-                    src="/images/where-to-watch/mytv.png"
-                    alt="MYTV"
-                    fill
-                    className="object-contain object-left"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      {/* ── Bottom Section: Minimalist University/Agency Carousel Indicators ── */}
-      <div className="relative z-30 border-t border-white/10 bg-brand-navy/90 px-6 py-6 backdrop-blur-md md:px-12">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          
-          {/* Numeric Timeline Indicator & Running Progress Line */}
-          <div className="flex flex-1 items-center gap-6">
-            <div className="flex items-center gap-1.5 font-mono text-xs font-bold text-white/50">
-              <span className="text-white">0{activeIndex + 1}</span>
-              <span>/</span>
-              <span>0{totalPrograms}</span>
-            </div>
+            {/* Secondary Button */}
+            <Link
+              href="/program"
+              className="flex w-full items-center justify-center border border-white/80 px-8 py-3.5 font-sans text-sm font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black sm:w-auto"
+            >
+              View Schedule
+            </Link>
             
-            {/* Minimal Horizontal Navigation Track */}
-            <div className="relative h-[2px] max-w-xs flex-1 bg-white/10">
-              <div
-                className={`h-full bg-brand-orange transition-[width] duration-[6000ms] ease-linear ${
-                  filled ? "w-full" : "w-0"
-                }`}
+          </div>
+
+          {/* "Watch Live On" Partner Logos */}
+          <div className="flex flex-col gap-3 border-t border-white/15 pt-6 sm:gap-4 sm:pt-8">
+            <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/60">
+              Watch Live On
+            </span>
+            <div className="flex items-center gap-5 sm:gap-6">
+              <Image
+                src="/images/hero/mana.png"
+                alt="Mana"
+                width={110}
+                height={36}
+                className="h-7 w-auto object-contain transition-transform hover:scale-105 sm:h-8 lg:h-9"
+              />
+              <div className="h-5 w-px bg-white/30" />
+              <Image
+                src="/images/where-to-watch/mytv.png"
+                alt="MYTV"
+                width={130}
+                height={36}
+                className="h-7 w-auto object-contain transition-transform hover:scale-105 sm:h-8 lg:h-9"
               />
             </div>
           </div>
 
-          {/* Simple Clean Toggle Controllers */}
-          <div className="flex items-center gap-2 self-end sm:self-auto">
+        </div>
+      </div>
+
+      {/* ── Bottom Carousel Controls ── */}
+      <div className="absolute bottom-0 right-0 z-30 w-full p-6 sm:w-auto md:p-12 md:pb-10">
+        <div className="flex items-center justify-between gap-4 sm:justify-end sm:gap-6">
+          
+          {/* Progress Dots */}
+          <div className="flex gap-2">
             {heroData.featuredPrograms.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => goToIndex(idx)}
-                className={`h-2 w-2 rounded-full transition-all ${
+                className={`h-1.5 transition-all duration-300 ${
                   idx === activeIndex
-                    ? "bg-brand-orange w-6"
-                    : "bg-white/20 hover:bg-white/40"
+                    ? "w-8 bg-[#FFC107]"
+                    : "w-1.5 bg-white/40 hover:bg-white"
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}
               />
             ))}
-            
-            <div className="ml-4 h-5 w-px bg-white/25" />
-
-            <div className="flex items-center gap-1">
-              <button
-                onClick={goToPrev}
-                aria-label="Previous slide"
-                className="flex h-8 w-8 items-center justify-center border border-white/15 text-white/60 transition-colors hover:border-brand-orange hover:text-brand-orange"
-              >
-                <ChevronLeft className="h-4 w-4" />
-              </button>
-              <button
-                onClick={goToNext}
-                aria-label="Next slide"
-                className="flex h-8 w-8 items-center justify-center border border-white/15 text-white/60 transition-colors hover:border-brand-orange hover:text-brand-orange"
-              >
-                <ChevronRight className="h-4 w-4" />
-              </button>
-            </div>
           </div>
 
+          <div className="hidden h-4 w-px bg-white/30 sm:block" />
+
+          {/* Nav Arrows */}
+          <div className="flex gap-2">
+            <button
+              onClick={goToPrev}
+              aria-label="Previous"
+              className="flex h-10 w-10 items-center justify-center border border-white/20 text-white transition-colors hover:border-[#FFC107] hover:bg-[#FFC107] hover:text-black"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <button
+              onClick={goToNext}
+              aria-label="Next"
+              className="flex h-10 w-10 items-center justify-center border border-white/20 text-white transition-colors hover:border-[#FFC107] hover:bg-[#FFC107] hover:text-black"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
+          
         </div>
       </div>
+      
     </section>
   );
 }

@@ -13,4 +13,5 @@ export const aboutChannelData: AboutChannelData = {
     "Civic awareness programming",
     "Available across multiple platforms",
   ],
+  imageUrl: "/images/about-channel/studio.png",
 };
