@@ -16,8 +16,8 @@
   
 
   /* Rus TV brand colors — added */
-  --color-brand-orange: #FE7F2D;
-  --color-brand-navy: #112E81;
+  --color-brand-orange: #e06b22;
+  --color-brand-navy: #001f5b;
 
   --color-sidebar-ring: var(--sidebar-ring);
   
@@ -140,18 +140,9 @@
   }
   html {
     @apply font-sans;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
     scroll-behavior: smooth;
+  }
+  section[id] {
+    scroll-margin-top: 88px;
   }
 }

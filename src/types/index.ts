@@ -5,3 +5,4 @@ export * from "./advertise";
 export * from "./news";
 export * from "./contact";
 export * from "./program";
+export * from "./content-category";

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Lato } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 
-const inter = Inter({
+const lato = Lato({
   subsets: ["latin"],
+  weight: ["300", "400", "700", "900"],
   variable: "--font-sans",
   display: "swap",
 });
@@ -34,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={lato.variable}>
       <body className="font-sans bg-white text-black antialiased">
         <Navbar />
         <main>{children}</main>

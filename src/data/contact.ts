@@ -1,30 +1,30 @@
 import { ContactData } from "@/types";
 
 export const contactData: ContactData = {
-  email: "contact@siaratv-placeholder.com",
+  email: "careline@mytvbroadcasting.my",
   phone: "+60 00-000 0000",
   address: "MYTV Headquarters, Kuala Lumpur, Malaysia",
   parentCompany: "Siara TV is a channel by MYTV",
   socialLinks: [
     {
-      platform: "Facebook",
+      platform: "SIARA TV Malaysia",
       url: "https://facebook.com/siaratv-placeholder",
-      iconName: "facebook",
+      iconName: "/socialmedia/facebook-color-svgrepo-com.svg",
     },
     {
-      platform: "Instagram",
+      platform: "@siaratv.my",
       url: "https://instagram.com/siaratv-placeholder",
-      iconName: "instagram",
+      iconName: "/socialmedia/instagram-2-1-logo-svgrepo-com.svg",
     },
     {
       platform: "TikTok",
       url: "https://tiktok.com/@siaratv-placeholder",
-      iconName: "music-2",
+      iconName: "/socialmedia/tiktok-color-svgrepo-com.svg",
     },
     {
-      platform: "YouTube",
+      platform: "SIARA TV",
       url: "https://youtube.com/siaratv-placeholder",
-      iconName: "youtube",
+      iconName: "/socialmedia/youtube-color-svgrepo-com.svg",
     },
   ],
 };
