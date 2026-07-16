@@ -2,12 +2,12 @@ import { aboutChannelData } from "@/data/about-channel";
 
 export default function About() {
   return (
-    <section id="about" className="relative overflow-hidden bg-white px-6 py-24 lg:py-40">
+    <section id="about" className="relative overflow-hidden bg-white px-6 py-10 sm:py-12 lg:py-16">
       
       {/* Massive Abstract Watermark / Background Element */}
       <div className="absolute -right-40 top-0 -z-10 h-[800px] w-[800px] rounded-full border-[100px] border-neutral-50 opacity-50 blur-3xl pointer-events-none" />
 
-      <div className="relative z-10 mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-16 lg:grid-cols-12 lg:gap-16 xl:gap-24">
+      <div className="relative z-10 mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-10 xl:gap-12">
         
         {/* Left: Reduced Typography Copy (Spans 6 columns) */}
         <div className="flex flex-col lg:col-span-6">

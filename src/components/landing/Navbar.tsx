@@ -4,11 +4,10 @@ import { useState } from "react";
 import Image from "next/image";
 import { siteConfig } from "@/config/site";
 
+// Removed "What's On" and "PSAs & Campaigns"
 const landingNavLinks = [
   { label: "Home", id: "home" },
   { label: "About", id: "about" },
-  { label: "What's On", id: "whats-on" },
-  { label: "PSAs & Campaigns", id: "psas-campaigns" },
   { label: "Updates", id: "updates" },
   { label: "Contact", id: "contact" },
 ];
@@ -31,12 +30,12 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white shadow-sm">
-      <div className="mx-auto flex min-h-[90px] max-w-7xl items-center justify-between pl-6 pr-6 lg:pr-0 xl:pl-0">
+      <div className="mx-auto flex min-h-[90px] max-w-7xl items-center justify-between pl-6 pr-6 lg:pr-6 xl:pl-0 xl:pr-0">
         
-        {/* Logo & Tagline */}
+        {/* Logo Only - No tagline */}
         <button
           onClick={() => scrollToSection("home")}
-          className="z-50 flex flex-col items-start gap-1 py-4"
+          className="z-50 flex items-center py-4"
         >
           <Image
             src="/images/logo/logosiara.png"
@@ -46,26 +45,23 @@ export default function Navbar() {
             className="h-auto w-[130px] object-contain sm:w-[150px]"
             priority
           />
-          <span className="text-[7px] font-bold tracking-[0.2em] text-brand-navy sm:text-[9px]">
-            INFORM &bull; CONNECT &bull; EMPOWER
-          </span>
         </button>
 
-        {/* Desktop Nav Links */}
-        <nav className="hidden items-center gap-8 py-4 lg:flex">
+        {/* Desktop Nav Links - Increased Font Size */}
+        <nav className="hidden items-center gap-10 py-4 lg:flex">
           {landingNavLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className={`group relative text-[13px] font-bold uppercase tracking-wider transition-colors duration-300 ${
-                  isActive ? "text-brand-orange" : "text-black/80 hover:text-brand-orange"
+                className={`group relative text-[16px] font-bold uppercase tracking-wider transition-colors duration-300 ${
+                  isActive ? "text-[#F37A20]" : "text-black/80 hover:text-[#F37A20]"
                 }`}
               >
                 {link.label}
                 <span
-                  className={`absolute -bottom-1 left-0 h-[2px] w-full origin-left bg-brand-orange transition-transform duration-300 ease-out ${
+                  className={`absolute -bottom-1 left-0 h-[2px] w-full origin-left bg-[#F37A20] transition-transform duration-300 ease-out ${
                     isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                   }`}
                 />
@@ -74,23 +70,9 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Desktop Right Badge */}
-        <div className="hidden h-[90px] flex-col items-center justify-center bg-[#182C45] px-10 lg:flex">
-          <span className="mb-1.5 text-[9px] font-bold uppercase tracking-widest text-white/90">
-            A Channel by
-          </span>
-          <Image
-            src="/images/where-to-watch/mytv.png"
-            alt="MYTV Broadcasting"
-            width={110}
-            height={35}
-            className="h-auto w-[100px] object-contain"
-          />
-        </div>
-
         {/* Mobile Menu Toggle Button */}
         <button
-          className="z-50 rounded-md p-2 text-black/80 transition-colors hover:bg-gray-100 hover:text-brand-orange focus:outline-none lg:hidden"
+          className="z-50 rounded-md p-2 text-black/80 transition-colors hover:bg-gray-100 hover:text-[#F37A20] focus:outline-none lg:hidden"
           onClick={toggleMenu}
           aria-label="Toggle menu"
           aria-expanded={isMobileMenuOpen}
@@ -107,7 +89,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay - Updated to match new links */}
       <div
         className={`absolute left-0 top-[90px] w-full origin-top transform flex-col overflow-hidden bg-white shadow-xl transition-all duration-300 ease-in-out lg:hidden ${
           isMobileMenuOpen ? "max-h-[500px] border-t opacity-100" : "max-h-0 opacity-0"
@@ -120,8 +102,8 @@ export default function Navbar() {
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className={`block border-b border-gray-100 py-4 text-left text-[14px] font-bold uppercase tracking-wider transition-colors last:border-0 ${
-                  isActive ? "text-brand-orange" : "text-black/80 hover:text-brand-orange"
+                className={`block border-b border-gray-100 py-4 text-left text-[15px] font-bold uppercase tracking-wider transition-colors last:border-0 ${
+                  isActive ? "text-[#F37A20]" : "text-black/80 hover:text-[#F37A20]"
                 }`}
               >
                 {link.label}
@@ -129,19 +111,6 @@ export default function Navbar() {
             );
           })}
         </nav>
-
-        <div className="flex flex-col items-center justify-center bg-[#182C45] py-6">
-          <span className="mb-2 text-[10px] font-bold uppercase tracking-widest text-white/90">
-            A Channel by
-          </span>
-          <Image
-            src="/images/where-to-watch/mytv.png"
-            alt="MYTV Broadcasting"
-            width={110}
-            height={35}
-            className="h-auto w-[100px] object-contain"
-          />
-        </div>
       </div>
     </header>
   );

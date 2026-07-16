@@ -6,12 +6,12 @@ import { siteConfig } from "@/config/site";
 
 export default function Contact() {
   return (
-    <section id="contact" className="bg-white px-6 py-24 lg:py-32">
+    <section id="contact" className="bg-white px-6 py-10 sm:py-12 lg:py-16">
       <div className="mx-auto max-w-[1400px]">
         
         {/* Editorial Section Header */}
-        <div className="mb-16 text-center">
-          <span className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#F37A20]">
+        <div className="mb-10 text-center">
+          <span className="text-[22px] font-bold uppercase tracking-[0.2em] text-[#F37A20]">
             Get in Touch
           </span>
           <h2 className="mt-3 text-3xl font-black uppercase tracking-tight text-[#002B4A] sm:text-4xl lg:text-5xl">
@@ -28,7 +28,7 @@ export default function Contact() {
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-[1px] border-y border-gray-200 bg-gray-200 sm:grid-cols-3">
           
           {/* Phone Block */}
-          <div className="group flex flex-col items-center bg-white p-12 text-center transition-colors duration-500 hover:bg-[#F37A20]">
+          <div className="group flex flex-col items-center bg-white p-8 text-center transition-colors duration-500 hover:bg-[#F37A20]">
             {/* Enlarged clean icon without circle background */}
             <div className="text-[#F37A20] transition-colors duration-500 group-hover:text-white">
               <Phone className="h-10 w-10" strokeWidth={1.25} />
@@ -48,7 +48,7 @@ export default function Contact() {
           </div>
 
           {/* Email Block */}
-          <div className="group flex flex-col items-center bg-white p-12 text-center transition-colors duration-500 hover:bg-[#F37A20]">
+          <div className="group flex flex-col items-center bg-white p-8 text-center transition-colors duration-500 hover:bg-[#F37A20]">
             <div className="text-[#F37A20] transition-colors duration-500 group-hover:text-white">
               <Mail className="h-10 w-10" strokeWidth={1.25} />
             </div>
@@ -65,30 +65,42 @@ export default function Contact() {
             </Link>
           </div>
 
-          {/* Website Block */}
-          <div className="group flex flex-col items-center bg-white p-12 text-center transition-colors duration-500 hover:bg-[#F37A20]">
+          {/* Social Media Block */}
+          <div className="group flex flex-col items-center bg-white p-8 text-center transition-colors duration-500 hover:bg-[#F37A20]">
             <div className="text-[#F37A20] transition-colors duration-500 group-hover:text-white">
               <Globe className="h-10 w-10" strokeWidth={1.25} />
             </div>
             
             <h3 className="mt-6 text-[13px] font-black uppercase tracking-wider text-[#002B4A] transition-colors duration-500 group-hover:text-white">
-              Official Website
+              Social Media
             </h3>
             
-            <Link
-              href="https://www.mytv.com.my"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 text-lg font-bold text-slate-800 transition-colors duration-500 hover:underline group-hover:text-white"
-            >
-              www.mytv.com.my
-            </Link>
+            <div className="mt-4 flex flex-wrap justify-center gap-3">
+              {contactData.socialLinks.map((social) => (
+                <Link
+                  key={social.platform}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.platform}
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-200 bg-white transition-all duration-300 hover:scale-105 hover:border-[#F37A20] group-hover:bg-white/10"
+                >
+                  <Image
+                    src={social.iconName}
+                    alt={social.platform}
+                    width={24}
+                    height={24}
+                    className="object-contain"
+                  />
+                </Link>
+              ))}
+            </div>
           </div>
 
         </div>
 
         {/* Social Links Section */}
-        <div className="mt-20 flex flex-col items-center gap-6">
+        <div className="mt-10 flex flex-col items-center gap-6">
           <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-slate-400">
             Follow Our Channels
           </span>

@@ -16,11 +16,7 @@ export const contactData: ContactData = {
       url: "https://instagram.com/siaratv-placeholder",
       iconName: "/socialmedia/instagram-2-1-logo-svgrepo-com.svg",
     },
-    {
-      platform: "TikTok",
-      url: "https://tiktok.com/@siaratv-placeholder",
-      iconName: "/socialmedia/tiktok-color-svgrepo-com.svg",
-    },
+  
     {
       platform: "SIARA TV",
       url: "https://youtube.com/siaratv-placeholder",

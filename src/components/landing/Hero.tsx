@@ -32,41 +32,46 @@ export default function Hero() {
         
         {/* Left-Aligned Copy */}
         <div className="max-w-lg lg:max-w-xl">
-          <h1 className="text-[40px] font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-[56px] drop-shadow-md">
+          {/* Increased Heading Size */}
+          <h1 className="text-[38px] font-extrabold leading-[1.1] tracking-tight text-white sm:text-[56px] lg:text-[62px] drop-shadow-md">
             Discover What&rsquo;s On
             <br />
             Malaysia&rsquo;s
             <br />
-            {/* The orange pops beautifully against the cinematic black */}
-            <span className="text-brand-orange">Free-to-Air TV</span>
+            <span className="text-[#F37A20]">Free-to-Air TV</span>
           </h1>
 
-          <p className="mt-6 text-[17px] leading-relaxed text-gray-300 drop-shadow-sm">
+          {/* Increased Paragraph Size */}
+          <p className="mt-6 text-[18px] leading-relaxed text-gray-300 drop-shadow-sm sm:text-[19px]">
             {siteConfig?.name || "SIARA TV"} is Malaysia&rsquo;s dedicated promotional and
             public information channel, connecting you to the best of the
             nation&rsquo;s free-to-air television platform.
           </p>
 
+          {/* Increased Button Sizes */}
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             
-            {/* Modal Trigger Button */}
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="inline-flex items-center justify-center gap-3 rounded-lg bg-brand-orange px-8 py-4 text-[14px] font-bold uppercase tracking-wider text-white shadow-lg shadow-brand-orange/25 transition-all hover:scale-105 hover:bg-[#ff8833] hover:shadow-xl"
+            {/* Updated to "Watch Now" and redirects to mana2.my */}
+            <Link
+              href="https://mana2.my"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-3 rounded-lg bg-[#F37A20] px-10 py-5 text-[16px] font-bold uppercase tracking-wider text-white shadow-lg shadow-[#F37A20]/25 transition-all hover:scale-105 hover:bg-[#ff8833] hover:shadow-xl"
             >
-              {/* Play Icon with White Circle matching design */}
               <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white">
-                <svg className="ml-0.5 h-3 w-3 fill-brand-orange" viewBox="0 0 24 24">
+                <svg className="ml-0.5 h-3 w-3 fill-[#F37A20]" viewBox="0 0 24 24">
                   <path d="M5 3l14 9-14 9V3z" />
                 </svg>
               </div>
-              Watch Channel {siteConfig?.channel?.number || "200"}
-            </button>
+              Watch Now
+            </Link>
 
-            {/* Secondary Link Button */}
+            {/* Updated to redirect to mytvbroadcasting.my/? */}
             <Link
-              href="#about"
-              className="inline-flex items-center justify-center rounded-lg border-2 border-white/20 bg-black/20 px-8 py-4 text-[14px] font-bold uppercase tracking-wider text-white backdrop-blur-sm transition-all hover:border-white hover:bg-white hover:text-black"
+              href="https://mytvbroadcasting.my/?"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-lg border-2 border-white/20 bg-black/20 px-10 py-5 text-[16px] font-bold uppercase tracking-wider text-white backdrop-blur-sm transition-all hover:border-white hover:bg-white hover:text-black"
             >
               Learn More
             </Link>

@@ -19,11 +19,11 @@ const iconMap = {
 
 export default function WhatsOn() {
   return (
-    <section id="whats-on" className="bg-white px-6 py-20 lg:py-28">
+    <section id="whats-on" className="bg-white px-6 py-10 sm:py-12 lg:py-16">
       <div className="mx-auto max-w-[1400px] text-center">
         
         {/* Centered Header */}
-        <span className="text-[12px] font-bold uppercase tracking-[0.2em] text-brand-orange">
+        <span className="text-[22px] font-bold uppercase tracking-[0.2em] text-brand-orange">
           Programmes
         </span>
         <h2 className="mt-3 text-3xl font-extrabold uppercase tracking-tight text-[#002B4A] sm:text-4xl">
@@ -35,7 +35,7 @@ export default function WhatsOn() {
           6-Column Row Grid 
           Using a gray background layer with a 1px gap to create sharp vertical borders.
         */}
-        <div className="mx-auto mt-16 grid grid-cols-2 gap-[1px] border-y border-gray-200 bg-gray-200 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="mx-auto mt-8 grid grid-cols-2 gap-[1px] border-y border-gray-200 bg-gray-200 sm:grid-cols-3 lg:grid-cols-6">
           
           {contentCategoriesData.map((category) => {
             const Icon = iconMap[category.icon as keyof typeof iconMap];
