@@ -9,6 +9,17 @@ import WatchModal from "@/components/landing/WatchModal";
 export default function Hero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Manual smooth scroll handler for internal anchors
+  const scrollToAbout = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const aboutSection = document.getElementById("about");
+    if (aboutSection) {
+      const offset = 80; // Adjust for sticky header height
+      const top = aboutSection.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+  };
+
   return (
     <section 
       id="home" 
@@ -43,13 +54,13 @@ export default function Hero() {
 
           {/* Increased Paragraph Size */}
           <p className="mt-6 text-[18px] leading-relaxed text-gray-300 drop-shadow-sm sm:text-[19px]">
-            SIARA TV connects viewers to the latest highlights, updates, public messages, and national campaigns on MYTV’s free-to-air digital TV platform.
+            SIARA TV connects viewers to the latest highlights, updates, public messages and national campaigns on MYTV’s free-to-air digital TV platform.
           </p>
 
           {/* Increased Button Sizes */}
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             
-            {/* Updated to "Watch Now" and redirects to mana2.my */}
+            {/* Watch Now Link - stays external */}
             <Link
               href="https://mana2.my"
               target="_blank"
@@ -64,14 +75,13 @@ export default function Hero() {
               Watch Now
             </Link>
 
-            {/* Updated to redirect to mytvbroadcasting.my/? */}
+            {/* Learn More Link - Shortened text & Internal scroll */}
             <Link
-              href="https://mytvbroadcasting.my/?"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#about"
+              onClick={scrollToAbout}
               className="inline-flex items-center justify-center rounded-lg border-2 border-white/20 bg-black/20 px-10 py-5 text-[16px] font-bold uppercase tracking-wider text-white backdrop-blur-sm transition-all hover:border-white hover:bg-white hover:text-black"
             >
-              Learn More about SIARA TV
+              Learn More
             </Link>
           </div>
         </div>

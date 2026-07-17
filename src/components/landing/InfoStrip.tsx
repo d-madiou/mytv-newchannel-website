@@ -16,15 +16,14 @@ export default function InfoStrip() {
           
           {/* Right: Content - INCREASED TEXT FONT */}
           <div className="flex flex-col">
-            <span className="mb-1.5 text-[12px] font-bold uppercase tracking-[0.2em] text-[#F37A20]">
-              What
-            </span>
+            
             <h3 className="mb-3 text-[22px] font-bold tracking-tight text-[#002B4A] lg:text-[26px]">
               { "SIARA TV"}
             </h3>
-            <p className="text-[17px] leading-relaxed text-gray-600 lg:text-[18px]">
+            {/* Added text-justify and removed the period at the end */}
+            <p className="text-[17px]  leading-relaxed text-gray-600 lg:text-[18px]">
               {aboutChannelData?.genre === "Public Service Announcements"
-                ? "Malaysia's official promotional and public information channel dedicated to showcasing programmes, campaigns, and information across Malaysia's free-to-air television platform."
+                ? "Promotional and public information channel dedicated to showcasing programmes, campaigns, and information across MYTV's free-to-air television platform"
                 : aboutChannelData?.description}
             </p>
           </div>
@@ -38,9 +37,7 @@ export default function InfoStrip() {
           
           {/* Right: Content - INCREASED TEXT FONT */}
           <div className="flex flex-col">
-            <span className="mb-1.5 text-[12px] font-bold uppercase tracking-[0.2em] text-[#F37A20]">
-              Where
-            </span>
+           
             <h3 className="mb-3 text-[22px] font-bold tracking-tight text-[#002B4A] lg:text-[26px]">
               Channel {siteConfig?.channel?.number || "200"}
             </h3>
@@ -51,11 +48,11 @@ export default function InfoStrip() {
             <ul className="mt-auto  border-t border-gray-100 pt-1">
               <li className="flex items-start gap-3 text-[17px] text-gray-600 lg:text-[18px]">
                 <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#002B4A]" strokeWidth={2.5} />
-                <span>No subscription required.</span>
+                <span>No subscription required</span>
               </li>
               <li className="flex items-start gap-3 text-[17px] text-gray-600 lg:text-[18px]">
                 <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#002B4A]" strokeWidth={2.5} />
-                <span>No monthly fee.</span>
+                <span>No monthly fee</span>
               </li>
             </ul>
           </div>
@@ -69,9 +66,7 @@ export default function InfoStrip() {
           
           {/* Right: Content - INCREASED TEXT FONT */}
           <div className="flex flex-col">
-            <span className="mb-1.5 text-[12px] font-bold uppercase tracking-[0.2em] text-[#F37A20]">
-              Enquiries
-            </span>
+            
             <h3 className="mb-3 text-[22px] font-bold tracking-tight text-[#002B4A] lg:text-[26px]">
               {siteConfig?.channel?.phone || "1300 80 6988"}
             </h3>

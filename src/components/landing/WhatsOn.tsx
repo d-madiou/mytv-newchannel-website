@@ -48,6 +48,16 @@ export default function WhatsOn() {
           
           {contentCategoriesData.map((category) => {
             const Icon = iconMap[category.icon as keyof typeof iconMap];
+            
+            // Split title by space and map to 2 separate lines with <br />
+            const formattedTitle = category.title.split(' ').map((word, index, arr) => (
+              <span key={index}>
+                {word}
+                {/* Add a <br /> after every word except the last one */}
+                {index < arr.length - 1 && <br />}
+              </span>
+            ));
+
             return (
               <div
                 key={category.id}
@@ -58,9 +68,9 @@ export default function WhatsOn() {
                   {Icon && <Icon className="h-10 w-10 sm:h-12 sm:w-12" strokeWidth={1.25} />}
                 </div>
                 
-                {/* Title */}
-                <h3 className="mt-5 text-center text-[14px] font-black uppercase tracking-wider text-[#002B4A] transition-colors duration-500 group-hover:text-white sm:text-[15px]">
-                  {category.title}
+                {/* Title - Now strictly 2 lines with proper responsive sizing */}
+                <h3 className="mt-5 text-center text-[15px] font-black uppercase tracking-wider text-[#002B4A] transition-colors duration-500 group-hover:text-white sm:text-[16px]">
+                  {formattedTitle}
                 </h3>
                 
                 {/* Description */}

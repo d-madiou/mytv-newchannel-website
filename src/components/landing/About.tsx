@@ -53,7 +53,7 @@ export default function About() {
               playsInline
               className="h-full w-full object-cover object-center transition-transform duration-1000 hover:scale-105"
             >
-              <source src="/videos/about/siaratv-about.mp4" type="video/mp4" />
+              <source src="/videos/about/IMG_4448.MP4" type="video/mp4" />
             </video>
           </div>
         </div>

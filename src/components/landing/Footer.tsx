@@ -40,8 +40,8 @@ export default function Footer() {
 
       <div className="mx-auto max-w-[1400px] px-6 py-12 lg:py-16">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {/* 1. Brand Block – replaced text with logo */}
-          <div className="flex flex-col justify-center gap-4">
+          {/* 1. Brand Block – Much Bigger Logo */}
+          <div className="flex flex-col justify-center gap-3">
             <div className="flex flex-col gap-1">
               <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-slate-400">
                 Brought to you by
@@ -49,9 +49,9 @@ export default function Footer() {
               <Image
                 src="/images/logo/mytvb.png"
                 alt="MYTV Broadcasting"
-                width={140}
-                height={60}
-                className="object-contain"
+                width={220}
+                height={105}
+                className="h-auto w-[200px] object-contain"
                 priority
               />
             </div>
@@ -106,14 +106,28 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Legal Baseline */}
+        {/* Legal Baseline - Updated Links */}
         <div className="mt-14 border-t border-slate-100 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[13px] font-medium text-slate-400">
           <div>
             &copy; {new Date().getFullYear()} MYTV Broadcasting Sdn Bhd.
           </div>
           <div className="flex gap-6">
-            <Link href="#contact" onClick={(e) => handleSmoothScroll(e, "#contact")} className="hover:text-[#F37A20] transition-colors">Terms</Link>
-            <Link href="#contact" onClick={(e) => handleSmoothScroll(e, "#contact")} className="hover:text-[#F37A20] transition-colors">Privacy</Link>
+            <Link 
+              href="https://mytvbroadcasting.my/wp-content/uploads/2022/12/terma_syarat.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-[#F37A20] transition-colors"
+            >
+              Terms
+            </Link>
+            <Link 
+              href="https://mytvbroadcasting.my/wp-content/uploads/2025/05/Privacy-Notice.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-[#F37A20] transition-colors"
+            >
+              Privacy
+            </Link>
           </div>
         </div>
       </div>
