@@ -7,6 +7,8 @@ import {
   RadioTower,
 } from "lucide-react";
 import { contentCategoriesData } from "@/data/content-categories";
+import { siteConfig } from "@/config/site";
+import Image from "next/image";
 
 const iconMap = {
   clapperboard: Clapperboard,
@@ -23,18 +25,25 @@ export default function WhatsOn() {
       <div className="mx-auto max-w-[1400px] text-center">
         
         {/* Centered Header */}
-        <span className="text-[22px] font-bold uppercase tracking-[0.2em] text-brand-orange">
+        <span className="text-[22px] font-bold uppercase tracking-[0.2em] text-[#F37A20]">
           Programmes
         </span>
-        <h2 className="mt-3 text-3xl font-extrabold uppercase tracking-tight text-[#002B4A] sm:text-4xl">
-          What You&rsquo;ll Find on Siara TV
+        
+        <h2 className="mt-3 flex items-center justify-center gap-2 text-3xl font-extrabold uppercase tracking-tight text-[#002B4A] sm:text-4xl">
+          What You&rsquo;ll Find on 
+          <Image
+            src="/images/logo/logosiara.png"
+            alt={siteConfig.name}
+            width={160}
+            height={50}
+            className="h-auto w-[130px] object-contain sm:w-[150px]"
+            priority
+          />
         </h2>
-        <div className="mx-auto mt-6 h-1.5 w-16 bg-brand-orange" />
+        
+        <div className="mx-auto mt-6 h-1.5 w-16 bg-[#F37A20]" />
 
-        {/* 
-          6-Column Row Grid 
-          Using a gray background layer with a 1px gap to create sharp vertical borders.
-        */}
+        {/* 6-Column Row Grid */}
         <div className="mx-auto mt-8 grid grid-cols-2 gap-[1px] border-y border-gray-200 bg-gray-200 sm:grid-cols-3 lg:grid-cols-6">
           
           {contentCategoriesData.map((category) => {
@@ -42,20 +51,20 @@ export default function WhatsOn() {
             return (
               <div
                 key={category.id}
-                className="group flex flex-col items-center bg-white px-5 py-12 transition-colors duration-500 hover:bg-brand-orange"
+                className="group flex flex-col items-center bg-white px-4 py-10 transition-colors duration-500 hover:bg-[#F37A20] sm:px-5 sm:py-12"
               >
                 {/* Clean, enlarged icon with transition */}
-                <div className="text-brand-orange transition-colors duration-500 group-hover:text-white">
-                  {Icon && <Icon className="h-10 w-10" strokeWidth={1.25} />}
+                <div className="text-[#F37A20] transition-colors duration-500 group-hover:text-white">
+                  {Icon && <Icon className="h-10 w-10 sm:h-12 sm:w-12" strokeWidth={1.25} />}
                 </div>
                 
                 {/* Title */}
-                <h3 className="mt-6 text-center text-[13px] font-black uppercase tracking-wider text-[#002B4A] transition-colors duration-500 group-hover:text-white">
+                <h3 className="mt-5 text-center text-[14px] font-black uppercase tracking-wider text-[#002B4A] transition-colors duration-500 group-hover:text-white sm:text-[15px]">
                   {category.title}
                 </h3>
                 
                 {/* Description */}
-                <p className="mt-3 text-center text-[13px] leading-relaxed text-slate-500 transition-colors duration-500 group-hover:text-white/90">
+                <p className="mt-3 text-center text-[14px] leading-relaxed text-slate-500 transition-colors duration-500 group-hover:text-white/90 sm:text-[15px]">
                   {category.description}
                 </p>
               </div>

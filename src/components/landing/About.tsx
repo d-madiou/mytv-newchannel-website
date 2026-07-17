@@ -29,7 +29,7 @@ export default function About() {
           {/* Reduced Paragraph Text Size */}
           <div className="mt-8 max-w-xl space-y-4 pl-4 sm:pl-5 lg:mt-8">
             {aboutChannelData.paragraphs.map((paragraph, i) => (
-              <p key={i} className="text-[15px] leading-[1.8] text-slate-600 xl:text-[16px]">
+              <p key={i} className="text-[15px] leading-[1.8] text-justify text-slate-600 xl:text-[16px]">
                 {paragraph}
               </p>
             ))}

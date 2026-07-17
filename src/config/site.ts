@@ -18,7 +18,7 @@ export const siteConfig = {
   },
   channel: {
     number: "200",
-    platform: "MYTV Digital Television",
+    platform: "MYTV Platform",
     phone: "1300 80 6988",
     operatingHours: "Monday – Friday, 9:00am – 5:00pm",
   },

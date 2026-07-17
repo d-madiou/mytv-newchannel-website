@@ -8,18 +8,18 @@ export const contactData: ContactData = {
   socialLinks: [
     {
       platform: "SIARA TV Malaysia",
-      url: "https://facebook.com/siaratv-placeholder",
+      url: "https://www.facebook.com/mytvbroadcasting/",
       iconName: "/socialmedia/facebook-color-svgrepo-com.svg",
     },
     {
       platform: "@siaratv.my",
-      url: "https://instagram.com/siaratv-placeholder",
+      url: "https://www.instagram.com/mytvbroadcasting_/",
       iconName: "/socialmedia/instagram-2-1-logo-svgrepo-com.svg",
     },
   
     {
       platform: "SIARA TV",
-      url: "https://youtube.com/siaratv-placeholder",
+      url: "https://www.youtube.com/@mytvbroadcastingofficial",
       iconName: "/socialmedia/youtube-color-svgrepo-com.svg",
     },
   ],

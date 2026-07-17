@@ -48,7 +48,7 @@ export default function InfoStrip() {
               Available <strong className="font-semibold text-black">FREE</strong> nationwide through {siteConfig?.channel?.platform || "MYTV Digital Television"}.
             </p>
             
-            <ul className="mt-auto space-y-2 border-t border-gray-100 pt-5">
+            <ul className="mt-auto  border-t border-gray-100 pt-1">
               <li className="flex items-start gap-3 text-[17px] text-gray-600 lg:text-[18px]">
                 <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#002B4A]" strokeWidth={2.5} />
                 <span>No subscription required.</span>

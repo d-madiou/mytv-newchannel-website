@@ -8,81 +8,56 @@ import { contactData } from "@/data/contact";
 const quickLinks = [
   { label: "About SIARA TV", href: "#about" },
   { label: "What's On", href: "#whats-on" },
-  { label: "PSAs & Campaigns", href: "#psas-campaigns" },
-  { label: "Updates", href: "#updates" },
   { label: "Contact Us", href: "#contact" },
 ];
 
-//  Manual scroll handler to prevent native hash navigation
 const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-  // Only intercept hash links
   if (!href.startsWith("#")) return;
 
-  e.preventDefault(); // Prevents the browser from appending to the URL
+  e.preventDefault();
 
   const targetId = href.replace("#", "");
   const element = document.getElementById(targetId);
 
   if (element) {
-    const offset = 80; // Adjust for sticky header height
+    const offset = 80;
     const elementPosition = element.getBoundingClientRect().top + window.scrollY;
     window.scrollTo({
       top: elementPosition - offset,
       behavior: "smooth",
     });
-
-    // Optional: Update the URL hash without causing a jump or history entry
-    // window.history.replaceState(null, "", href); // Uncomment if you *must* update URL, otherwise keep it blank
   }
 };
 
 export default function Footer() {
   return (
     <footer className="relative bg-white">
-      
       {/* Pro UI Asymmetric Top Border */}
       <div className="flex h-1.5 w-full">
         <div className="bg-[#002B4A] flex-grow" />
         <div className="bg-[#F37A20] w-24 sm:w-48 lg:w-72" />
       </div>
 
-      {/* Slightly increased padding for larger text comfort */}
       <div className="mx-auto max-w-[1400px] px-6 py-12 lg:py-16">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          
-          {/* 1. Brand Block */}
-          <div className="flex flex-col justify-between gap-6">
-            <div>
-              <Link href="#home" onClick={(e) => handleSmoothScroll(e, "#home")}>
-                <Image
-                  src="/images/logo/logosiara.png"
-                  alt={siteConfig.name}
-                  width={130}
-                  height={38}
-                  className="h-auto w-[120px] object-contain"
-                  priority
-                />
-              </Link>
-              <span className="mt-2 block text-[11px] font-black uppercase tracking-[0.25em] text-[#002B4A]/60">
-                Inform &bull; Connect &bull; Empower
-              </span>
-            </div>
-
-            <div className="flex items-center gap-4">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          {/* 1. Brand Block – replaced text with logo */}
+          <div className="flex flex-col justify-center gap-4">
+            <div className="flex flex-col gap-1">
               <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-slate-400">
-                A Channel By
+                Brought to you by
               </span>
               <Image
-                src="/images/where-to-watch/mytv.png"
+                src="/images/logo/mytvb.png"
                 alt="MYTV Broadcasting"
-                width={85}
-                height={24}
-                className="h-auto w-[90px] object-contain"
+                width={140}
+                height={60}
+                className="object-contain"
+                priority
               />
             </div>
           </div>
 
-          {/* 2. Quick Links - Increased Font */}
+          {/* 2. Quick Links */}
           <div>
             <h3 className="text-[14px] font-black uppercase tracking-[0.18em] text-[#002B4A]">
               Quick Links
@@ -102,56 +77,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* 3. Social Footprint - Increased Font */}
-          <div>
-            <h3 className="text-[14px] font-black uppercase tracking-[0.18em] text-[#002B4A]">
-              Connect With Us
-            </h3>
-            <ul className="mt-5 space-y-3">
-              {contactData.socialLinks
-                .filter((social) => !social.iconName.toLowerCase().includes("tiktok"))
-                .map((social) => {
-                  let svgPath = "";
-                  switch (social.iconName.toLowerCase()) {
-                    case "facebook":
-                      svgPath = "/socialmedia/facebook-color-svgrepo-com.svg";
-                      break;
-                    case "instagram":
-                      svgPath = "/socialmedia/instagram-2-1-logo-svgrepo-com.svg";
-                      break;
-                    case "youtube":
-                      svgPath = "/socialmedia/youtube-color-svgrepo-com.svg";
-                      break;
-                    default:
-                      svgPath = social.iconName;
-                  }
-
-                  return (
-                    <li key={social.platform}>
-                      <Link
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center gap-3 text-[16px] font-medium text-slate-500 transition-colors duration-200 hover:text-[#F37A20]"
-                      >
-                        <div className="flex h-7 w-7 items-center justify-center border border-gray-100 bg-slate-50 transition-colors group-hover:border-[#F37A20]/20 group-hover:bg-[#F37A20]/5">
-                          <Image
-                            src={svgPath}
-                            alt={social.platform}
-                            width={16}
-                            height={16}
-                            className="object-contain"
-                          />
-                        </div>
-                        {social.platform}
-                      </Link>
-                    </li>
-                  );
-                })}
-            </ul>
-          </div>
-
-          {/* 4. Communication Nodes - Increased Font */}
+          {/* 3. Contact Us */}
           <div>
             <h3 className="text-[14px] font-black uppercase tracking-[0.18em] text-[#002B4A]">
               Contact Us
@@ -176,23 +102,11 @@ export default function Footer() {
                   {contactData.email}
                 </Link>
               </li>
-              <li className="flex items-center gap-3 group">
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center bg-slate-50 text-[#F37A20]">
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <circle cx="12" cy="12" r="10" />
-                    <line x1="2" x2="22" y1="12" y2="12" />
-                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                  </svg>
-                </div>
-                <Link href="https://mytvbroadcasting.my/?" target="_blank" rel="noopener noreferrer" className="hover:underline transition-colors hover:text-slate-800">
-                  mytv.com.my
-                </Link>
-              </li>
             </ul>
           </div>
         </div>
 
-        {/* Legal Baseline - Increased Font */}
+        {/* Legal Baseline */}
         <div className="mt-14 border-t border-slate-100 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[13px] font-medium text-slate-400">
           <div>
             &copy; {new Date().getFullYear()} MYTV Broadcasting Sdn Bhd.

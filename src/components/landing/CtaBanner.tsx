@@ -45,9 +45,6 @@ export default function CtaBanner() {
             <p className="mt-1 text-lg font-black uppercase tracking-wider text-white">
               {siteConfig.channel.platform.toUpperCase()} &bull; CHANNEL {siteConfig.channel.number}
             </p>
-            <p className="mt-1.5 text-[13px] font-medium text-white/60">
-              No subscription or special box required.
-            </p>
           </div>
 
           {/* Right Block: Redirect Link Button */}

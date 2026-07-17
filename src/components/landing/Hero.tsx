@@ -18,7 +18,7 @@ export default function Hero() {
       {/* Full Section Background Image & Overlay */}
       <div className="absolute inset-0 z-0 bg-black">
         <Image
-          src="/images/hero/hero-image1.png"
+          src="/images/hero/website-h.png"
           alt="SIARA TV Hero Background"
           fill
           priority
@@ -33,19 +33,17 @@ export default function Hero() {
         {/* Left-Aligned Copy */}
         <div className="max-w-lg lg:max-w-xl">
           {/* Increased Heading Size */}
-          <h1 className="text-[38px] font-extrabold leading-[1.1] tracking-tight text-white sm:text-[56px] lg:text-[62px] drop-shadow-md">
+          <h1 className="text-[28px] font-extrabold leading-[1.1] tracking-tight text-white sm:text-[56px] lg:text-[52px] drop-shadow-md">
             Discover What&rsquo;s On
             <br />
-            Malaysia&rsquo;s
+            MYTV
             <br />
-            <span className="text-[#F37A20]">Free-to-Air TV</span>
+            <span className="text-[#F37A20]">Free-to-Air Digital TV</span>
           </h1>
 
           {/* Increased Paragraph Size */}
           <p className="mt-6 text-[18px] leading-relaxed text-gray-300 drop-shadow-sm sm:text-[19px]">
-            {siteConfig?.name || "SIARA TV"} is Malaysia&rsquo;s dedicated promotional and
-            public information channel, connecting you to the best of the
-            nation&rsquo;s free-to-air television platform.
+            SIARA TV connects viewers to the latest highlights, updates, public messages, and national campaigns on MYTV’s free-to-air digital TV platform.
           </p>
 
           {/* Increased Button Sizes */}
@@ -56,7 +54,7 @@ export default function Hero() {
               href="https://mana2.my"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-3 rounded-lg bg-[#F37A20] px-10 py-5 text-[16px] font-bold uppercase tracking-wider text-white shadow-lg shadow-[#F37A20]/25 transition-all hover:scale-105 hover:bg-[#ff8833] hover:shadow-xl"
+              className="inline-flex items-center justify-center gap-3 rounded-lg bg-[#F37A20] px-10 py-5 text-[14px] font-bold uppercase tracking-wider text-white shadow-lg shadow-[#F37A20]/25 transition-all hover:scale-105 hover:bg-[#ff8833] hover:shadow-xl"
             >
               <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white">
                 <svg className="ml-0.5 h-3 w-3 fill-[#F37A20]" viewBox="0 0 24 24">
@@ -73,7 +71,7 @@ export default function Hero() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-lg border-2 border-white/20 bg-black/20 px-10 py-5 text-[16px] font-bold uppercase tracking-wider text-white backdrop-blur-sm transition-all hover:border-white hover:bg-white hover:text-black"
             >
-              Learn More
+              Learn More about SIARA TV
             </Link>
           </div>
         </div>
