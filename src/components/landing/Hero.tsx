@@ -29,7 +29,7 @@ export default function Hero() {
       {/* Full Section Background Image & Overlay */}
       <div className="absolute inset-0 z-0 bg-black">
         <Image
-          src="/images/hero/website-h.png"
+          src="/images/hero/website-h1.png"
           alt="SIARA TV Hero Background"
           fill
           priority
@@ -62,7 +62,7 @@ export default function Hero() {
             
             {/* Watch Now Link - stays external */}
             <Link
-              href="https://mana2.my"
+              href="https://mana2.my/channel/d2b549cc-218c-4cd2-aab3-e9e479c3f24f"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 rounded-lg bg-[#F37A20] px-10 py-5 text-[14px] font-bold uppercase tracking-wider text-white shadow-lg shadow-[#F37A20]/25 transition-all hover:scale-105 hover:bg-[#ff8833] hover:shadow-xl"

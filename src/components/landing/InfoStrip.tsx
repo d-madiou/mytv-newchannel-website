@@ -39,7 +39,7 @@ export default function InfoStrip() {
           <div className="flex flex-col">
            
             <h3 className="mb-3 text-[22px] font-bold tracking-tight text-[#002B4A] lg:text-[26px]">
-              Channel {siteConfig?.channel?.number || "200"}
+              MYTV {siteConfig?.channel?.number || "200"}
             </h3>
             <p className="mb-6 text-[17px] leading-relaxed text-gray-600 lg:text-[18px]">
               Available <strong className="font-semibold text-black">FREE</strong> nationwide through {siteConfig?.channel?.platform || "MYTV Digital Television"}.
